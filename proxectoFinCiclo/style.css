@@ -1,0 +1,771 @@
+/*
+    Autora: Blanca Penabad Villar
+    Email: practicas.daw@moonoff.com
+*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+/* Navbar */
+
+html,body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+}
+
+
+.navbar{
+    background-color: white;
+    height: 9vh;
+}
+.navbar-brand{
+    font-weight: 200;
+    color: rgb(231, 107, 169);
+    font-size: 32px;
+    transition: 0.3s color;
+}
+.navbar-brand:hover{
+    color: lightblue;
+}
+
+.login-boton{
+    background-color: rgb(231, 107, 169);
+    color: white;
+    font-size: 14px;
+    padding: 8px 20px;
+    border-radius: 50px;
+    text-decoration: none;
+    transition: 0.3s background-color;
+}
+
+
+.login-boton:hover{
+    background-color: lightblue;
+}
+
+.navbar-toggler{
+    border: none;
+    font-size: 1.25rem;
+}
+
+.navbar-toggler:focus, .btn-close_focus{
+    box-shadow: none;
+    outline: none;
+}
+
+.nav-link{
+    color: rgb(231, 107, 169);
+    font-weight: 200;
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active{
+    color: lightblue;
+}
+
+@media (min-width:991px){
+    .nav-link:before{
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 0;
+        height: 2px;
+        background-color: steelblue;
+        visibility: hidden;
+        transition: 0.3 ease-in-out;
+    }
+
+    .nav-link:hover::before, .nav-link.active::before{
+        width: 100%;
+        visibility: visible;
+    }
+}
+
+
+
+ /* Hero Section */
+.hero-section {
+    background-size: cover;
+    width: 100%;
+    position: relative; /* Necesario para el posicionamiento de elementos hijos */
+    padding-top: 20vh;
+    padding-bottom: 10vh;
+    flex: 1;
+}
+
+.hero-section::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0; /* Mantiene el fondo detrás del contenido */
+}
+
+.hero-section .container {
+    z-index: 1; /* Asegura que el contenido esté por encima del fondo */
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2vh;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.3); /* Fondo blanco opaco para el contenedor */
+    border-radius: 10px; /* Bordes redondeados opcionales */
+}
+
+
+.hero-section .container h1 {
+    font-size: 1.5em;
+    font-weight: 200; /* Ajusta el peso de la fuente */
+    color: rgb(231, 107, 169);
+}
+
+.hero-section .container h2 {
+    font-size: 0.6em;
+    font-weight: 200;
+    color: rgb(231, 107, 169);
+}
+
+.container h2{
+    color: rgb(10, 35, 56);
+}
+
+
+
+/* Footer */
+footer{
+    background-color: rgb(255, 255, 255);
+}
+
+.footerContainer{
+    width: 100%;
+    padding: 70px 30px 20px;
+}
+
+.socialMediaIcons{
+    display: flex;
+    justify-content: center;
+}
+.socialMediaIcons a{
+    text-decoration: none;
+    padding: 1vh;
+    background-color: rgb(231, 107, 169);
+    margin: 1vh;
+    border-radius: 50%;
+}
+
+.socialMediaIcons a i{
+    font-size: 2em;
+    color: rgb(255, 255, 255);
+    opacity: 0.9;
+}
+
+.socialMediaIcons a:hover{
+    background-color: lightblue;
+    transition: 0.3s;
+
+}
+
+.footerNav{
+    margin: 3vh 0;
+}
+
+.footerNav ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    font-weight: 200;
+}
+
+.footerNav ul li a {
+   color:rgb(231, 107, 169);
+   margin: 20px;
+   text-decoration: none;
+   font-size: 1.3em;
+   opacity: 1;
+   transition: 0.3s;
+}
+
+.footerNav ul li a:hover {
+    color: lightblue;
+    transition: 0.3s;
+ }
+
+ .footerBottom{
+    background-color: rgb(255, 255, 255);
+    padding: 2vh;
+    text-align: center;
+ }
+
+ .footerBottom p{
+    color: rgb(231, 107, 169);
+ }
+
+ .designer{
+    opacity: 0,7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 400;
+    margin: 0px 5px;
+    
+ }
+
+ @media(max-width: 700px){
+    .footerNav ul{
+        flex-direction: column;
+    }
+
+    .footerNav ul li {
+        width: 100%;
+        text-align: center;
+        margin: 10px;
+    }
+ }
+
+
+
+ /* Formulario Login */
+form{
+    font-size: 1em;
+    font-weight: 200;
+    color: steelblue;
+    background: linear-gradient(rgb(255, 255, 255), rgb(231, 107, 169));
+    width: 70%;
+    max-width: 600px;
+    padding: 40px;
+    border-radius: 10px;
+    margin: 0 auto;
+
+
+}
+
+
+#emailHelp{
+    font-size: 0.5em;
+}
+
+
+
+.btn-primary{
+    background-color: steelblue;
+}
+
+
+/*RESERVAS*/
+
+#h2Reserva{
+    font-size: 55px;
+    color: rgb(10, 35, 56);
+    text-shadow: 1px 1px 1px black;
+}
+
+/*Formulario reservas*/
+.reserva-container {
+    background: linear-gradient(rgb(255, 255, 255), rgb(231, 107, 169));
+    padding: 40px;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    flex-direction: column; /* Apila los elementos verticalmente */
+    border-radius: 10px;
+
+}
+
+/* Estilos para el formulario */
+.reserva-form {
+    background: transparent;
+    width: 100%; /* Hace que el formulario use todo el ancho del contenedor */
+    display: flex;
+    flex-direction: column; /* Apila los elementos verticalmente */
+    font-size: 0.4em;
+    padding: 50px;
+}
+
+.reserva-form label {
+    margin-bottom: 10px; /* Espacio entre el label y el input */
+}
+
+.reserva-form input {
+    margin-bottom: 10px; /* Espacio entre inputs */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.fecha-hora-container {
+    display: flex; /* Usa Flexbox */
+    gap: 10px; /* Espacio entre los inputs */
+}
+
+.fecha-hora-container input {
+    flex: 1; /* Hace que ambos inputs ocupen el mismo ancho */
+}
+/* Responsive */
+@media (max-width: 600px) {
+    .reserva-container {
+        padding: 20px; /* Menos padding en pantallas pequeñas */
+    }
+
+    form input {
+        padding: 8px; /* Menos padding en inputs */
+    }
+}
+
+/*CONTACTO*/
+.contactInfo{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: left;
+}
+
+.box{
+    display: flex;
+    align-items: flex-start;
+    color: white
+}
+
+.icon{
+    margin-right: 10px;
+    font-size: 1em;
+    color: white;
+}
+
+.cinco h2{
+    font-size: 55px;
+    text-shadow: 1px 1px 1px black;
+    color: black;
+    padding-bottom: 50px;
+
+}
+
+.text h3 {
+    margin: 0;
+    font-weight: 400;
+
+}
+
+.text h3 a{
+    text-decoration: none;
+    color: white;
+    transition: 0.3s;
+
+}
+
+.text h3 a::hover{
+    color:rgb(10, 35, 56);
+
+}
+
+.text p{
+    margin: 0;
+    font-size: 0.5em;
+    font-weight: 200;
+}
+
+/*INDEX II*/
+.containerII{
+    /*padding-top: 45vh;*/
+    font-family: "Raleway", sans sans-serif;
+    color: white;
+    
+}
+
+.cero .uno, .dos, .tres, .cuatro, .cinco{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.cero{
+    width: 100%;
+    background-color: hotpink;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    padding: 50vh 0;
+}
+
+.textoHome{
+    width: 90%;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.textoHome h1{
+    font-family: "Raleway", sans sans-serif;
+    font-size: 62px;
+
+}
+
+.textoHome p{
+    margin: 10px 0 40px;
+    font-size: 14px;
+    color: white;
+}
+
+.home-btn{
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    border: 1px solid white;
+    padding: 12px 34px;
+    font-size: 13px;
+    background-color: transparent;
+    position: relative;
+    cursor: pointer;
+}
+.uno{
+    background: linear-gradient(rgb(255, 255, 255), rgb(231, 107, 169));
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 20vh 0;
+    min-height: 100vh;
+
+    
+}
+.uno h2{
+    margin: 0 0 30px 0;
+    color: rgb(231, 107, 169);
+    text-align: center;
+    font-size: 55px;
+    text-shadow: 1px 1px 1px black;
+    font-family: "Raleway", sans sans-serif;
+}
+.uno h3{
+    margin-top: 40px;
+    text-shadow: 2px 1px 1px  rgba(0, 0, 0, 0.7);
+    text-align: center;
+    color: steelblue;
+
+}
+
+.dos{
+    background-color: rgb(231, 107, 169);
+    clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 0;
+    min-height: 100vh;
+
+
+}
+
+.dos h2{
+    margin: 0 0 30px 0;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-size: 55px;
+    text-shadow: 1px 1px 1px black;
+    font-family: "Raleway", sans sans-serif;
+    padding-top: 30px;
+
+}
+
+.tres{
+    background: linear-gradient(white, aliceblue);
+
+}
+.cuatro{
+    background-color: aliceblue;
+
+}
+
+#opciones {
+    padding: 20px;
+    background-color: aliceblue;
+    text-align: center; /* Centrar el contenido */
+}
+
+#opciones h2 {
+    font-size: 55px; /* Tamaño del título */
+    margin-bottom: 20px; /* Espacio entre el título y las opciones */
+    color: rgb(231, 107, 169); /* Color del texto del título */
+    font-family: "Raleway", sans sans-serif;
+    text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.contenedor {
+    display: flex;
+    justify-content: center; /* Centrar las opciones en el contenedor */
+    flex-wrap: wrap; /* Permitir que las opciones se envuelvan en pantallas pequeñas */
+    gap: 20px; /* Espaciado entre los contenedores */
+}
+
+.opcion {
+    background: rgb(231, 107, 169); /*Color de fondo del contenedor de opciones*/
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1 1 300px; /* Flexibilidad en el tamaño */
+    max-width: 400px; /* Ancho máximo de cada opción */
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5); 
+}
+
+.opcion h3 {
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    margin-bottom: 10px;
+    text-shadow: 2px 1px 1px rgba(0, 0, 0, 0.5);
+
+    
+}
+
+.opcion p {
+    margin-bottom: 15px;
+    font-size: 25px;
+}
+
+.opcion ul {
+    list-style-type: square;
+   
+}
+
+.opcion li {
+    margin: 5px 0;
+}
+
+/* Estilos responsivos */
+@media (max-width: 600px) {
+    .contenedor {
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        align-items: center; /* Centrar los elementos en columna */
+    }
+}
+
+.cinco{
+    background: linear-gradient(aliceblue,rgb(231, 107, 169));
+}
+
+
+.rowI{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 80%;
+    max-width: 1170px;
+    margin: 0 auto;
+}
+
+.right{
+    flex: 1 1 300px;
+    display: flex;
+    justify-content: center;
+}
+
+.rowI .right img{
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.left{
+    flex: 1 1 300px;
+}
+
+@media(max-width: 768px){
+    .rowI{
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .left .right{
+        flex: 1 1 100%;
+        text-align: center;
+    }
+
+    .right img{
+        max-width: 80%;
+    }
+}
+
+.contenido h2{
+    font-size: 55px;
+    text-shadow: 1px 1px 1px black;
+    font-family: "Raleway", sans sans-serif;
+}
+
+
+.contenido p{
+    font-size: 17px;
+}
+
+.iconHome{
+    font-size: 50px;
+    color: steelblue;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+}
+
+.accordion {
+    margin: 0 auto;
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+}
+
+.accordion-item {
+    margin-bottom: 10px;
+}
+
+.accordion-header {
+    padding: 15px;
+    cursor: pointer;
+    background-color: rgb(231, 107, 169); 
+    border: none; /* Sin bordes */
+    text-align: left; /* Alineación a la izquierda */
+    font-size: 18px; /* Tamaño de fuente */
+    transition: background-color 0.3s;
+}
+
+.accordion-header:hover {
+    background-color: rgba(0, 0, 0, 0.05); /* Sutil efecto al pasar el ratón */
+}
+
+.accordion-content {
+    padding: 15px;
+    display: none; /* Inicialmente oculto */
+    background-color: transparent; /* Color de fondo del contenido */
+}
+
+.accordion-content.show {
+    display: block; /* Muestra el contenido cuando se activa */
+}
+
+
+@media (max-width: 768px) {
+    .beneficios {
+        flex-direction: column; /* Cambia a columna en pantallas pequeñas */
+        align-items: center; /* Centra los elementos */
+    }
+
+    .flechaVerde {
+        margin-left: 0; /* Remueve margen en móvil */
+        margin-top: 20px; /* Agrega margen arriba para separación */
+    }
+}
+.analisis-datos {
+    text-align: center;
+    padding: 40px;
+
+  }
+
+
+  
+  .iconos {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .icono {
+    flex: 1;
+    max-width: 250px; /* Ajusta el ancho máximo si es necesario */
+    margin: 0 10px; /* Espaciado entre los iconos */
+  }
+  
+  .icono i {
+    width: 50px; /* Ajusta el tamaño del icono */
+    height: 50px;
+    font-size: 50px;
+    margin-bottom: 10px;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .icono h4 {
+    font-size: 1.2em;
+    margin: 10px 0 5px;
+    text-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+
+  }
+  
+  .icono p {
+    font-size: 0.9em;
+    color: #000000; /* Color del texto */
+  }
+
+
+
+  .masDatos {
+    text-align: center;
+    padding: 40px;
+
+  }
+
+  .iconosI {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+  }
+  
+  .iconoI {
+    flex: 1;
+    max-width: 250px; /* Ajusta el ancho máximo si es necesario */
+    margin: 0 10px; /* Espaciado entre los iconos */
+    background-color: #d6e3ec;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+
+  }
+  
+  .iconoI i {
+    width: 50px; /* Ajusta el tamaño del icono */
+    height: 50px;
+    font-size: 50px;
+    color: rgb(231, 107, 169);
+    margin-bottom: 10px;
+  }
+  
+  .iconoI h4 {
+    font-size: 1.2em;
+    color: rgb(231, 107, 169);
+    margin: 10px 0 5px;
+    text-shadow: 5px 5p 10px rgba(0, 0, 0, 0.2);
+
+  }
+  .iconoI h3 {
+    font-size: 1.7em;
+    color: rgb(231, 107, 169);
+    margin: 10px 0 5px;
+
+  }
+  
+  .to-top{
+    background:white;
+    position: fixed;
+    bottom: 16px;
+    right: 32px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    color: #1f1f1f;
+    text-decoration: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: all .4s;
+  }
+
+  .to-top.active{
+    bottom: 32px;
+    pointer-events: auto;
+    opacity: 1;
+  }
