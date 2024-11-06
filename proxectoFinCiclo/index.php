@@ -12,6 +12,9 @@ crear_tabla_servicios($conexion);
 crear_tabla_citas($conexion);
 
 
+$negocios = nombres_negocios($conexion);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,35 +86,46 @@ crear_tabla_citas($conexion);
     </section>
     <section class="uno" id="sobrenosotros">
       <h2>Negocios que ya trabajan con nosotros</h2>
-      
+      <ul>
+        <?php
+        // Mostrar los nombres de los negocios en una lista
+        if ($negocios) {
+            foreach ($negocios as $negocio) {
+                echo "<li>" . htmlspecialchars($negocio['nombre']) . "</li>";
+            }
+        } else {
+            echo "<li>No hay negocios registrados.</li>";
+        }
+        ?>
+      </ul>
     </section>
     <section class="dos"  id="beneficios">
-        <h2>Aumenta la productividad y rentabilidad de tu hotel con Optiprice</h2>
+        <h2>BENEFICIOS</h2>
         <div class="accordion">
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Optimización dinámica de precios</h3>
+              <h3>Texto</h3>
             </div>
             <div class="accordion-content">
-              <p>OptiPrice utiliza algoritmos avanzados e inteligencia artificial para ajustar automáticamente los precios según la demanda, temporadas y tendencias del mercado. Esto permite a los hoteles maximizar sus ingresos al garantizar que siempre estén ofreciendo precios competitivos.</p>
+              <p>Texto</p>
             </div>
           </div>
         
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Aumento de beneficios y rentabilidad</h3>
+              <h3>Texto</h3>
             </div>
             <div class="accordion-content">
-              <p>Al implementar OptiPrice, los hoteleros pueden experimentar un aumento promedio del 14% en sus beneficios anuales vinculados a las reservas. La herramienta facilita la gestión de tarifas, liberando tiempo para que los gestores se enfoquen en mejorar otros aspectos del servicio, lo que impacta positivamente en la calidad y satisfacción del cliente. </p>
+              <p>Texto</p>
             </div>
           </div>
         
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Integración y facilidad de uso</h3>
+              <h3>Texto</h3>
             </div>
             <div class="accordion-content">
-              <p>OptiPrice se integra fácilmente con la mayoría de los sistemas de gestión hotelera (PMS) y plataformas de venta online, permitiendo una actualización diaria de precios sin intervención manual. Su panel intuitivo permite a los usuarios monitorear el rendimiento de precios y obtener informes analíticos personalizados, lo que facilita la toma de decisiones informadas.</p>
+              <p>Texto</p>
             </div>
           </div>
         </div>
@@ -120,17 +134,17 @@ crear_tabla_citas($conexion);
             <div class="icono">
               <i class="fa-solid fa-gear"></i>
               <h4>EFICIENCIA</h4>
-              <p>Optimización de la gestión eliminando aquellas tareas sin valor añadido.</p>
+              <p>Texto</p>
             </div>
             <div class="icono">
               <i class="fa-solid fa-hand-holding-hand"></i>
               <h4>FIABILIDAD</h4>
-              <p>Prescripción automática de precios en base al comportamiento real de la demanda.</p>
+              <p>Texto</p>
             </div>
             <div class="icono">
               <i class="fa-solid fa-clock"></i>        
               <h4>AHORRO DE TIEMPO</h4>
-              <p>Redución de horas dedicadas a la asignación manual de precios.</p>
+              <p>Texto</p>
             </div>
           </div>
         </section>
@@ -138,7 +152,7 @@ crear_tabla_citas($conexion);
     </section>
     <section class="tres"  id="reserva">
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
-        <h2 id="h2Reserva">Haz tu reserva con GESTOR<b>CITAS</b></h2>
+        <h2 id="h2Reserva">Reserva tu <b>CITA</b></h2>
         <h2>Rápido, sencillo y sin necesidad de darte de alta!</h2>
         <div id="reserva" class="reserva-container">
           <form class="reserva-form">
@@ -172,12 +186,12 @@ crear_tabla_citas($conexion);
         <div class="contenedor">
             <div class="opcion">
                 <h3>BÁSICO</h3>
-                <p>Copilot de apoyo a la toma de
-                  decisiones disponible en la nube</p>
+                <p>TextoTextoTextoTextoTextoTexto
+                  TextoTextoTextoTextoTexto</p>
                 <ul>
-                    <li>No requiere instalación de ningun hardware</li>
-                    <li>Se requiere del histórico de datos de reservas y cancelaciones de 2 últimos años</li>
-                    <li>Necesario compartir los precios actuales ofertados</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
                 </ul>
             </div>
             <div class="opcion">
@@ -185,9 +199,9 @@ crear_tabla_citas($conexion);
                 <p>Integración con el HPM y
                   fijación AUTOMÁTICA de precios</p>
                 <ul>
-                    <li>No requiere instalación de ningun hardware</li>
-                    <li>Integración con su HMP (e.g., Hotelgest) para fijación automatizada de precios</li>
-                    <li>Se requiere un análisis específico para integración con HMP</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
                 </ul>
             </div>
         </div>
@@ -195,14 +209,13 @@ crear_tabla_citas($conexion);
           <div class="iconosI">
             <div class="iconoI">
               <i class="fa-solid fa-tag"></i>
-              <h4>PRECIO </br> HABITACIÓN</h4>
+              <h4>PRECIO </br> CITA</h4>
               <h3>+30%</h3>
             </div>
             <div class="iconoI">
               <i class="fa-solid fa-bed"></i>
-              <h4>OCUPACIÓN</h4>
+              <h4>TEXTO</h4>
               <h3>+15%</h3>
-
             </div>
             <div class="iconoI">
               <i class="fa-solid fa-user-tie"></i>     
@@ -234,7 +247,7 @@ crear_tabla_citas($conexion);
           <div class="box">
             <div class="icon"><i class="fa-solid fa-envelope"></i></div>
               <div class="text">
-                <h3>Envíanos un email a <a href="mailto:optiprize@optiprize.com">optiprice@optiprice.com</a></h3>
+                <h3>Envíanos un email a <a href="mailto:optiprize@optiprize.com">GESTORCITAS@GESTORCITAS.com</a></h3>
               </div>
           </div>
           <div class="box">
@@ -244,7 +257,6 @@ crear_tabla_citas($conexion);
               </div>
           </div>
         </div>
-        
         </div>
     </div>
     </section>
@@ -282,7 +294,7 @@ crear_tabla_citas($conexion);
 
 <!-- End Footer -->
 
-    <!--Bootstrap JS-->
+<!--Bootstrap JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
 <script>

@@ -769,3 +769,59 @@ form{
     pointer-events: auto;
     opacity: 1;
   }
+
+  /*TABLA SERVICIOS*/
+.table th{
+    vertical-align: middle;  /* Asegura que el texto esté alineado verticalmente */
+    font-size: 0.45em;  
+    padding: 10px; 
+}
+
+.table td{
+    vertical-align: middle;  
+    font-size: 0.35em;  
+    padding: 10px; 
+}
+
+.table {
+    border-radius: 10px;  
+    overflow: hidden; 
+}
+
+
+.table-responsive {
+    overflow-x: auto;  
+    -webkit-overflow-scrolling: touch; 
+}
+
+
+.table th, .table td {
+    white-space: nowrap;  
+}
+
+
+@media (max-width: 768px) {
+    .table th, .table td {
+        font-size: 0.35em;  
+        padding: 10px;
+    }
+}
+
+
+@media (max-width: 600px) {
+    .table th, .table td {
+        font-size: 0.35em;  
+        padding: 8px;  
+    }
+
+    .table-responsive {
+        margin: 10px 0;  
+    }
+}
+
+
+#formulario-delete{
+    background-color: none;  
+    padding: 0px;  
+    
+}

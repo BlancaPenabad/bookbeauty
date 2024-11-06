@@ -24,14 +24,33 @@ crear_tabla_administrador($conexion);
 $id_administrador = $_SESSION['id_administrador'];
 $negocio = datos_negocio($conexion, $id_administrador);
 
+//Obtengo  datos de los servicios del negocio del administrador loggeado
+$servicios = datos_servicios($conexion, $id_administrador);
+
 if($negocio === null){
   $nombre_negocio = "No tienes negocio";
   $telefono_negocio = " ";
 }else{
   $nombre_negocio = $negocio['nombre'];
   $telefono_negocio = $negocio['telefono'];
+  $direccion_negocio = $negocio['direccion'];
 }
 
+
+if (isset($_GET['delete_servicio'])) {
+  $id_servicio = $_GET['delete_servicio'];
+
+  if (is_numeric($id_servicio)) {
+
+      if (deleteServicio($conexion, $id_servicio)) {
+          echo "<script>alert('Servicio eliminado con éxito');</script>";
+      } else {
+          echo "<script>alert('Hubo un error al eliminar el servicio');</script>";
+      }
+      header("Location: dashboard_admin.php");
+      exit();
+  }
+}
 ?>
 
 <!DOCTYPE html>
@@ -70,10 +89,10 @@ if($negocio === null){
               <a class="nav-link mx-lg-2" href="#miNegocio">MI NEGOCIO</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#citas">MIS CITAS</a>
+              <a class="nav-link mx-lg-2" href="#servicios">MIS SERVICIOS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#opcionesI">MIS SERVICIOS</a>
+              <a class="nav-link mx-lg-2" href="#opcionesI">MIS CITAS</a>
             </li>
           </ul>
         </div>
@@ -94,8 +113,8 @@ if($negocio === null){
       <div class="textoHome">
         <h1>Administradores</h1>
         <p>Zona restringida administradores</p>
-        <a href="#citas" class="home-btn">Mis citas</a>
-        <a href="#opciones" class="home-btn">Mis servicios</a>
+        <a href="#servicios" class="home-btn">Mis servicios</a>
+        <a href="#opciones" class="home-btn">Mis citas</a>
       </div>
     </section>
     <section class="dos"  id="miNegocio">
@@ -109,22 +128,20 @@ if($negocio === null){
               <p><?= htmlspecialchars($telefono_negocio); ?></p>
             </div>
           </div>
-        
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Aumento de beneficios y rentabilidad</h3>
+              <h3>Dirección</h3>
             </div>
             <div class="accordion-content">
-              <p>Al implementar OptiPrice, los hoteleros pueden experimentar un aumento promedio del 14% en sus beneficios anuales vinculados a las reservas. La herramienta facilita la gestión de tarifas, liberando tiempo para que los gestores se enfoquen en mejorar otros aspectos del servicio, lo que impacta positivamente en la calidad y satisfacción del cliente. </p>
+              <p><?= htmlspecialchars($direccion_negocio); ?></p>
             </div>
           </div>
-        
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Integración y facilidad de uso</h3>
+              <h3>Texto</h3>
             </div>
             <div class="accordion-content">
-              <p>OptiPrice se integra fácilmente con la mayoría de los sistemas de gestión hotelera (PMS) y plataformas de venta online, permitiendo una actualización diaria de precios sin intervención manual. Su panel intuitivo permite a los usuarios monitorear el rendimiento de precios y obtener informes analíticos personalizados, lo que facilita la toma de decisiones informadas.</p>
+              <p>Texto</p>
             </div>
           </div>
         </div>
@@ -133,27 +150,62 @@ if($negocio === null){
             <div class="icono">
               <i class="fa-solid fa-gear"></i>
               <h4>EFICIENCIA</h4>
-              <p>Optimización de la gestión eliminando aquellas tareas sin valor añadido.</p>
+              <p>Texto</p>
             </div>
             <div class="icono">
               <i class="fa-solid fa-hand-holding-hand"></i>
               <h4>FIABILIDAD</h4>
-              <p>Prescripción automática de precios en base al comportamiento real de la demanda.</p>
+              <p>Texto</p>
             </div>
             <div class="icono">
               <i class="fa-solid fa-clock"></i>        
               <h4>AHORRO DE TIEMPO</h4>
-              <p>Redución de horas dedicadas a la asignación manual de precios.</p>
+              <p>Texto</p>
             </div>
           </div>
-        </section>
-        
+        </section> 
     </section>
-    <section class="tres"  id="citas">
+    <section class="tres"  id="servicios">
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
-        <h2 id="h2Reserva">Gestiona tus <b>CITAS</b></h2>
+        <h2 id="h2Reserva">Gestiona tus <b>SERVICIOS</b></h2>
         <div id="reserva" class="reserva-container">
-          <p>AQUÍ IRÁ UNA TABLA CON LAS CITAS DE UN NEGOCIO CONCRETO. HABRÁ OPCIÓN DE AÑADIR, BORRAR Y EDITAR.</p>
+        <h2>Servicios del Negocio</h2>
+        <div class="container">
+        <?php if ($servicios && count($servicios) > 0): ?>
+          <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                  <thead>
+                      <tr> 
+                          <th>Nombre</th>
+                          <th>Descripción</th>
+                          <th>Precio</th>
+                          <th>Duración</th>
+                          <th></th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <?php foreach ($servicios as $index => $servicio): ?>
+                          <tr>
+                              <td><?= htmlspecialchars($servicio['nombre']); ?></td>
+                              <td><?= htmlspecialchars($servicio['descripcion']); ?></td>
+                              <td><?= number_format($servicio['precio'], 2); ?>€</td>
+                              <td><?= htmlspecialchars($servicio['duracion']); ?> minutos</td>
+                              <td>
+                              <form id="formulario-delete" action="dashboard_admin.php" method="get" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este servicio?');">
+                                  <input type="hidden" name="delete_servicio" value="<?= $servicio['id_servicio']; ?>">
+                                  <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                              </form>
+                              <button class="btn btn-warning btn-sm">Editar</button>
+                              </td>
+                          </tr>
+                      <?php endforeach; ?>
+                  </tbody>
+              </table>
+            </div>
+        <?php else: ?>
+            <p>No hay servicios disponibles.</p>
+        <?php endif; ?>
+    </div>
         </div>
     </div>
     </section>
@@ -163,22 +215,20 @@ if($negocio === null){
         <div class="contenedor">
             <div class="opcion">
                 <h3>BÁSICO</h3>
-                <p>Copilot de apoyo a la toma de
-                  decisiones disponible en la nube</p>
+                <p>Texto</p>
                 <ul>
-                    <li>No requiere instalación de ningun hardware</li>
-                    <li>Se requiere del histórico de datos de reservas y cancelaciones de 2 últimos años</li>
-                    <li>Necesario compartir los precios actuales ofertados</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
                 </ul>
             </div>
             <div class="opcion">
                 <h3>AVANZADO</h3>
-                <p>Integración con el HPM y
-                  fijación AUTOMÁTICA de precios</p>
+                <p>Texto</p>
                 <ul>
-                    <li>No requiere instalación de ningun hardware</li>
-                    <li>Integración con su HMP (e.g., Hotelgest) para fijación automatizada de precios</li>
-                    <li>Se requiere un análisis específico para integración con HMP</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
+                    <li>Texto</li>
                 </ul>
             </div>
         </div>
@@ -186,19 +236,19 @@ if($negocio === null){
           <div class="iconosI">
             <div class="iconoI">
               <i class="fa-solid fa-tag"></i>
-              <h4>PRECIO </br> HABITACIÓN</h4>
-              <h3>+30%</h3>
+              <h4>TEXTO</h4>
+              <h3>Texto</h3>
             </div>
             <div class="iconoI">
               <i class="fa-solid fa-bed"></i>
-              <h4>OCUPACIÓN</h4>
-              <h3>+15%</h3>
+              <h4>TEXTO</h4>
+              <h3>Texto</h3>
 
             </div>
             <div class="iconoI">
               <i class="fa-solid fa-user-tie"></i>     
-              <h4>TAREAS ADMIN.</h4>
-              <h3>-8h/mes</h3>
+              <h4>TEXTO</h4>
+              <h3>Texto</h3>
             </div>
           </div>
         </section>

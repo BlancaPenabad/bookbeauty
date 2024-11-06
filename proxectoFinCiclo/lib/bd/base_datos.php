@@ -159,7 +159,16 @@ function alta_admin($conexion, $usuario, $password){
 
     
 }
+//Devuelve los nombres de TODOS los negocios
+function nombres_negocios($conexion){
+    $consulta = $conexion->prepare("SELECT * FROM negocios");
+    $consulta->execute();
+    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $resultados;
+}
 
+//Devuelve los datos del negocio asociado a un administrador
 function datos_negocio($conexion, $id_administrador){
     $consulta = $conexion->prepare("SELECT * FROM negocios WHERE id_administrador = :id_administrador");
     $consulta->bindParam(':id_administrador', $id_administrador);
@@ -177,6 +186,23 @@ function cerrar_conexion($conexion){
     $conexion = null;
 }
 
+function datos_servicios($conexion, $id_administrador){
+    $negocio = datos_negocio($conexion, $id_administrador);
+
+    if($negocio){
+        $id_negocio = $negocio['id_negocio'];
+
+
+        $consulta_servicios = $conexion->prepare("SELECT * FROM servicios WHERE id_negocio = :id_negocio");
+        $consulta_servicios->bindParam(':id_negocio', $id_negocio);
+        $consulta_servicios->execute();
+
+        return $consulta_servicios->fetchAll(PDO::FETCH_ASSOC);
+    }else{
+        return null;
+    }
+}
+
 
 
 function login($usuario, $password){
@@ -190,7 +216,6 @@ function login($usuario, $password){
     $consulta->bindParam(':usuario', $usuario);
     $consulta->execute();
 
-    //Verificar númerode filas devueltas y recogida de nombre e id del administrador loggeado
     if($consulta->rowCount() > 0){
         $fila = $consulta->fetch(PDO::FETCH_ASSOC);
         if(password_verify($password, $fila['pass'])){
@@ -207,4 +232,3 @@ function login($usuario, $password){
 
 
 ?>
-
