@@ -68,7 +68,7 @@ if($negocio == null){
               <a class="nav-link mx-lg-2" href="#servicios">MIS SERVICIOS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#reserva">MIS CITAS</a>
+              <a class="nav-link mx-lg-2" href="#reservas">MIS CITAS</a>
             </li>
           </ul>
         </div>
@@ -87,10 +87,10 @@ if($negocio == null){
   <div class="containerII">
     <section class="cero" id="home">
       <div class="textoHome">
-        <h1>Nombre negocio</h1>
-        <p>Zona restringida administradores</p>
-        <a href="#servicios" class="home-btn">Mis servicios</a>
-        <a href="#opciones" class="home-btn">Mis citas</a>
+        <h1><?= htmlspecialchars($nombre_negocio); ?></h1>
+        <p>La manera más fácil de reservar belleza</p>
+        <a href="#servicios" class="home-btn">Ver servicios</a>
+        <a href="#reservas" class="home-btn">Reserva tu cita</a>
       </div>
     </section>
     <section class="uno"  id="miNegocio">
@@ -147,7 +147,7 @@ if($negocio == null){
                               <td><?= number_format($servicio['precio'], 2); ?>€</td>
                               <td><?= htmlspecialchars($servicio['duracion']); ?> minutos</td>
                               <td>
-                              <a href="#reserva" class="btn btn-warning btn-sm">Reservar</a>
+                              <a href="#reservas" class="btn btn-warning btn-sm">Reservar</a>
                               </td>
                           </tr>
                       <?php endforeach; ?>
@@ -161,7 +161,7 @@ if($negocio == null){
         </div>
     </div>
     </section>
-    <section class="tres"  id="reserva">
+    <section class="tres"  id="reservas">
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <h2 id="h2Reserva">Reserva tu cita en <b><?= htmlspecialchars($nombre_negocio); ?></b></h2>
         <h2>Rápido, sencillo y sin necesidad de darte de alta!</h2>
