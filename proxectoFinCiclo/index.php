@@ -91,7 +91,7 @@ $negocios = nombres_negocios($conexion);
         // Mostrar los nombres de los negocios en una lista
         if ($negocios) {
             foreach ($negocios as $negocio) {
-                echo "<li>" . htmlspecialchars($negocio['nombre']) . "</li>";
+                echo "<li><a href='negocios.php?id_negocio=". $negocio['id_negocio'] ."'  >" . htmlspecialchars($negocio['nombre']) . "</a></li>";
             }
         } else {
             echo "<li>No hay negocios registrados.</li>";

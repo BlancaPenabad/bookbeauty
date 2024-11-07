@@ -203,8 +203,30 @@ function datos_servicios($conexion, $id_administrador){
     }
 }
 
+function datos_negocio_id($conexion, $id_negocio){
+    $consulta = $conexion->prepare("SELECT * FROM negocios WHERE id_negocio = :id_negocio");
+    $consulta->bindParam(':id_negocio', $id_negocio);
+    $consulta->execute();
 
+    if($consulta->rowCount() > 0){
+        return $consulta->fetch(PDO::FETCH_ASSOC);
+    }else{
+        return null;
+    }
+}
 
+function datos_servicios_id($conexion ,$id_negocio){
+    $consulta = $conexion->prepare("SELECT * FROM servicios WHERE id_negocio = :id_negocio");
+    $consulta->bindParam(':id_negocio', $id_negocio);
+    $consulta->execute();
+
+    $resultados = $consulta->fetchAll(PDO::FETCH_ASSOC);
+    if ($resultados) {
+        return $resultados;
+    } else {
+        return []; 
+    }
+}
 function login($usuario, $password){
     if(!isset($_SESSION)){
         session_start();
