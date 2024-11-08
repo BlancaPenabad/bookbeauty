@@ -392,6 +392,16 @@ form{
     position: relative;
     padding: 50vh 0;
 }
+.ceroI::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0; /* Mantiene el fondo detrás del contenido */
+}
+
 
 .textoHome{
     width: 90%;
@@ -425,6 +435,13 @@ form{
     background-color: transparent;
     position: relative;
     cursor: pointer;
+    transition: color 0.3s, box-shadow 0.3s;
+}
+
+.home-btn:hover{
+    color: white;
+    border-color: white;
+    box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
 }
 .uno{
     background: linear-gradient(rgb(255, 255, 255), rgb(231, 107, 169));
@@ -449,9 +466,23 @@ form{
     margin-top: 40px;
     text-shadow: 2px 1px 1px  rgba(0, 0, 0, 0.7);
     text-align: center;
-    color: steelblue;
+    color: rgb(231, 107, 169);
 
 }
+#sobrenosotros ul li a{
+    margin-top: 30px;
+    text-align: center;
+    font-size: 40px;
+    color: rgb(231, 107, 169);
+    text-decoration: none;
+    transition: color 0.3s;
+
+
+}
+
+#sobrenosotros ul li a:hover {
+    color: #ffffff;
+  }
 
 .dos{
     background-color: rgb(231, 107, 169);

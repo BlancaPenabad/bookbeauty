@@ -19,10 +19,12 @@ if($negocio == null){
   $nombre_negocio = "No tienes negocio";
   $telefono_negocio = "";
   $direccion_negocio = "";
+  $foto_negocio = "";
 }else{
   $nombre_negocio = $negocio['nombre'];
   $telefono_negocio = $negocio['telefono'];
   $direccion_negocio = $negocio['direccion'];
+  $foto_negocio = $negocio['foto_negocio'];
 }
 
 
@@ -45,7 +47,6 @@ if($negocio == null){
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <link href="style.css" rel="stylesheet">
-    
 </head>
 <body>
 <!--Header & Navbar-->
@@ -62,18 +63,18 @@ if($negocio == null){
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
            
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#miNegocio">MI NEGOCIO</a>
+              <a class="nav-link mx-lg-2" href="#miNegocio">EL NEGOCIO</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#servicios">MIS SERVICIOS</a>
+              <a class="nav-link mx-lg-2" href="#servicios">SERVICIOS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#reservas">MIS CITAS</a>
+              <a class="nav-link mx-lg-2" href="#reservas">RESERVA TU CITA</a>
             </li>
           </ul>
         </div>
       </div>
-          <a href="dashboard_admin.php?logout=true" role="button" class="login-boton">Cerrar sesión</a>
+          <a href="index.php" role="button" class="login-boton">Atrás</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -85,7 +86,7 @@ if($negocio == null){
 <!--Main-->
 <main>
   <div class="containerII">
-    <section class="cero" id="home">
+    <section class="ceroI" id="home" style="background: linear-gradient(rgba(4,9,30,0.3), rgba(4,9,30,0.3)), url('lib/images/<?= htmlspecialchars($foto_negocio); ?>') no-repeat center;  min-height: 100vh; background-size: cover; width: 100%; position: relative; padding-top: 20vh; padding-bottom: 10vh; flex: 1;">
       <div class="textoHome">
         <h1><?= htmlspecialchars($nombre_negocio); ?></h1>
         <p>La manera más fácil de reservar belleza</p>
@@ -171,9 +172,15 @@ if($negocio == null){
               <label for="opcionSelect">Servicios:</label>
                 <select id="opcionSelect" name="opcionSelect" required>
                     <option value="" disabled selected>Elige una opción</option>
-                    <option value="opcion1">Balayage</option>
-                    <option value="opcion2">Babylights</option>
-                    <option value="opcion3">Tinte</option>
+                    <?php if ($servicios && count($servicios) > 0): ?>
+                        <?php foreach ($servicios as $servicio): ?>
+                            <option value="<?= htmlspecialchars($servicio['id_servicio']); ?>">
+                                <?= htmlspecialchars($servicio['nombre']); ?>
+                            </option>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <option value="">No hay servicios disponibles</option>
+                    <?php endif; ?>
                 </select>
               <label for="fecha">Fecha y hora:</label>
               <div class="fecha-hora-container">

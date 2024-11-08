@@ -105,22 +105,7 @@ if(empty($mensajes)){
 
 <!-- Footer -->
 <footer>
-  <div class="footerContainer">
-    <div class="socialMediaIcons">
-      <a href=""><i class="fa-brands fa-facebook"></i></a>
-      <a href=""><i class="fa-brands fa-instagram"></i></a>
-      <a href=""><i class="fa-brands fa-linkedin"></i></a>
-      <a href=""><i class="fa-brands fa-twitter"></i></a>
-    </div>
-    <div class="footerNav">
-      <ul>
-        <li><a href="index.php">Sobre nosotros</a></li>
-        <li><a href="index.php">Beneficios</a></li>
-        <li><a href="index.php">Reserva tu cita</a></li>
-        <li><a href="index.php">Contacto</a></li>
-      </ul>
-    </div>
-  </div>
+  
   <div class="footerBottom">
       <p><small>Copyright &copy;2024; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
     </div>
