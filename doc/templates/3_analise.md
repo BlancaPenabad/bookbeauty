@@ -1,57 +1,52 @@
-# REQUIRIMENTOS DO SISTEMA
-Este documento describe os requirimentos para \[nome do proxecto\] especificando que funcionalidade ofrecerá e de que xeito.
+# ANÁLISE: Requirimentos do sistema
 
-## Descrición Xeral
+Este documento describe os requerimientos de **Xestor de Citas**, especificando que funcionalidades ofrecerá e de qué xeito.
 
-Descrición Xeral do proxecto
+## Descrición xeral do proxecto
 
-## Funcionalidades
-Describir que servizos ou operacións se van poder realizar por medio do noso proxecto, indicando que actores interveñen en cada caso.
-Enumeralas, de maneira que na fase de deseño poidamos definir o diagrama ou configuración correspondente a cada funcionalidade.
+O proxecto está enfocado en desenvolver unha **aplicación web de xestión de citas** orientada a negocios do sector da estética/beleza (salóns de beleza, centros de medicina estética, dentistas, perruquerías) e centrarase na xestión de citas para distintos servizos relacionados. O obxectivo é establecer unha xestión eficiente das citas tanto para os clientes como os administradores dos negocios.
 
-Exemplo:
- 1. Xestión de clientes na BD
- 2. Xestión de pedidos
- ...
- 3. Configuración do directorio activo
- 4. Configuración do DNS
- 
-## Requerimentos non funcionais
-Requerimentos relativos a rendemento, seguridade, etc. se procede
+## Enumeración e descrición de cada unha das funcionalidades
+
+| **Funcionalidade**   | **Descrición**                                                                 |
+|----------------------|--------------------------------------------------------------------------------|
+| **Reservar cita**     | Usuarios e administradores poden crear citas na BD.                             |
+| **Cancelar cita**     | Usuarios e administradores poden eliminar citas da BD.                         |
+| **Editar cita**       | Usuarios e administradores poden modificar datos das citas na BD.              |
+| **Filtrar cita**      | Administradores poderán consultar e filtrar citas na BD.                       |
+| **Engadir servizo**   | Administradores poden engadir un novo servizo na BD.                           |
+| **Eliminar servizo**  | Administradores poden eliminar un servizo da BD.                               |
+| **Editar servizo**    | Administradores poden modificar datos dos servizos na BD.                     |
+
+### Descrición detallada das funcionalidades
+
+- **Reservar cita**: Permitir a tanto usuarios como administradores reservar unha cita especificando a data, o servizo que se van a realizar, o nome, email e teléfono do cliente.
+- **Cancelar cita**: Permitir a tanto usuarios como administradores eliminar/cancelar unha cita anteriormente programada.
+- **Editar citas**: Permitir a tanto usuarios como administradores modificar algunha das especificacións dunha cita anteriormente programada.
+- **Filtrar citas**: Permitir a tanto usuarios como administradores consultar e filtrar citas.
+- **Engadir servizo**: Permitir ao administrador dun negocio engadir un novo servizo á súa oferta, especificando un nome, breve descrición, duración aproximada, e prezo.
+- **Eliminar servizo**: Permitir ao administrador dun negocio eliminar un dos servizos ofertados.
+- **Editar servizo**: Permitir ao administrador dun negocio modificar algunha das especificacións dos servizos ofertados.
 
 ## Tipos de usuarios
-Tipos de usuario que poderán acceder ó noso sistema. Poderán diferenciarse polos permisos sobre os datos, pantallas que se lles amosan, operacións que poden levar a cabo, etc.
 
-Exemplo:
-  * Usuario xerente, que terá acceso a ...
-  * Usuario técnico, que poderá...
+- **Clientes**: Son aqueles usuarios que van a solicitar citas en negocios para realizarse un servizo concreto. Poderán consultar os servizos ofertados e os negocios, así como programar unha cita, editala ou eliminala se o desexan.
+- **Administradores**: Son aqueles encargados ou traballadores dun negocio que poderán facer as mesmas funcións que os clientes e ademais engadir novos servizos á súa oferta, así como editar ou eliminar os existentes.
 
+## Entorno operacional
 
-## Avaliación da viabilidade técnica do proxecto
-
-### Hardware requerido
-Analizar as opcións hardware existentes e xustificar a idoneidade dos compoñentes seleccionados.
-
-### Software
-Analizar as opcións software existentes e xustificar a idoneidade dos compoñentes seleccionados.
+Estimación de plataformas, hardware e software necesarias para a implementación.
 
 ## Interfaces externos
-En caso dun proxecto orientado ao desenvolvemento de software, indicar (se procede) como se comunicará o noso software co exterior. É posible que só teña interfaces de usuario, que normalmente son as pantallas. Un exemplo de interface hardware sería un lector de código de barras.
 
-### Interfaces de usuario
+### Interface de usuario
 
-
-### Interfaces hardware
-
-
-### Interfaces software
-
-
-## Análise de riscos e interesados
-Determinar todas aquelas persoas, entidades ou cousas que poden ter un impacto (positivo ou negativo) no proxecto ou na idea de negocio, e indicar as medidas a levar a cabo para tratar de potenciar os impactos positivos e evitar ou mitigar os posibles impactos negativos.
-
-## Actividades
-Definir, de forma xeral, os pasos que se han seguir para levar a cabo o proxecto, de forma que na fase de planificación nos sirvan como referencia para detallar as tarefas, recursos e temporalización necesaria para cada fase.
+O programa **Xestor de Citas**, interaccionará co exterior exclusivamente por vía dunha **interface de usuario**, a cal será **responsive** de modo que sexa correctamente visualizada por distintos tamaños de pantalla (ordenador convencional, tablet e teléfonos móbiles).
 
 ## Melloras futuras
-É posible que o noso proxecto se centre en resolver un problema concreto que se poderá ampliar no futuro con novas funcionalidades, novas interfaces, etc.
+
+As versións futuras do sistema poderían incorporar melloras:
+
+- **Recordatorios**: Recordatorios vía **email/SMS** aos clientes das citas programadas 24h antes da data establecida.
+- **Calendario**: Vista tipo **calendario diario** onde se mostren as citas programadas e os ocos libres dun xeito visual e claro para facilitar a organización aos administradores.
+- **Citas simultáneas**: Permitir simultaneidade de citas en función do número de traballadores dun negocio e da súa disponibilidade.
