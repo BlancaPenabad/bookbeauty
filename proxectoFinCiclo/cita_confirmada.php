@@ -72,7 +72,7 @@ if(empty($mensajes)){
         </div>
         
       </div>
-      <a href="index.php" class="login-boton">Atrás</a>
+      <a href="negocios.php" class="login-boton">Atrás</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -84,19 +84,8 @@ if(empty($mensajes)){
 <!--Hero Section -->
 <section class="hero-section">
     <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
-        <h1>Iniciar sesión</h1>
-            <form class="mx-auto" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-                <div class="mb-3">
-                    <label for="userName" class="form-label">Nombre de usuario:</label>
-                    <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="emailHelp" placeholder="Nombre de usuario" value="<?= $usuario?>">
-                </div>
-                <div class="mb-3">
-                    <label for="password" class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" id="password" name="password" placeholder="Contraseña" value="<?= $password?>">
-                    <div id="emailHelp" class="form-text">¿Has olvidado tu contraseña?</div>
-                </div>
-            <button type="submit" class="btn btn-primary" name="login">Login</button>
-            </form>
+        <h1>¡Tu cita ha sido confirmada!  Gracias por reservar con GestorCitas</h1>
+           
     </div>
     <?= get_mensajes_html_format($mensajes); ?>
 

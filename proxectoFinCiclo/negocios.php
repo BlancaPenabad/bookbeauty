@@ -6,7 +6,7 @@ include "lib/bd/utilidades.php";
 
 $conexion = get_conexion();
 seleccionar_bd_gestorCitas($conexion);
-
+$mensajes = array();
 
 if (isset($_GET['id_negocio'])) {
   $id_negocio = $_GET['id_negocio'];
@@ -27,6 +27,26 @@ if($negocio == null){
   $foto_negocio = $negocio['foto_negocio'];
 }
 
+if($_SERVER['REQUEST_METHOD'] === 'POST'){
+  $id_servicio = $_POST['opcionSelect'];
+  $fecha = $_POST['fecha'].' '.$_POST['hora'];
+  $nombre_cliente = $_POST['nombre'];
+  $email_cliente = $_POST['email'];
+  $tlf_cliente = $_POST['tlf'];
+
+  $codigo_unico = strtoupper(uniqid('CITA', true));
+
+    $resultado = addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_cliente, $tlf_cliente, $codigo_unico);
+
+    if ($resultado) {
+      $mensajes[] = array("success", "Tu cita se ha registrado correctamente. ¡Gracias!");
+      header('Location: cita_confirmada.php');
+      exit;
+  } else {
+      $mensajes[] = array("error", "Ha ocurrido un error.");
+  }
+
+}
 
 ?>
 
@@ -163,12 +183,12 @@ if($negocio == null){
     </div>
     </section>
     <section class="tres"  id="reservas">
+    <?= get_mensajes_html_format($mensajes); ?>
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <h2 id="h2Reserva">Reserva tu cita en <b><?= htmlspecialchars($nombre_negocio); ?></b></h2>
         <h2>Rápido, sencillo y sin necesidad de darte de alta!</h2>
         <div id="reserva" class="reserva-container">
-          <form class="reserva-form">
-               <!--FALTA AÑADIR EL SELECT DE SERVICIOS-->
+          <form class="reserva-form" method="POST" action="">
               <label for="opcionSelect">Servicios:</label>
                 <select id="opcionSelect" name="opcionSelect" required>
                     <option value="" disabled selected>Elige una opción</option>
