@@ -854,5 +854,27 @@ form{
 #formulario-delete{
     background-color: none;  
     padding: 0px;  
+}
+
+.contenedor-tabla{
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.custom-table {
+    width: 100%;  
+}
+
+.custom-table th {
+    font-size: 20px; 
+    font-weight: bold; 
     
 }
+
+/* Estilo de las celdas de la tabla */
+.custom-table td {
+    font-size: 1.2rem; 
+    padding: 10px; 
+    border-top: 1px solid #ddd; 
+}
+

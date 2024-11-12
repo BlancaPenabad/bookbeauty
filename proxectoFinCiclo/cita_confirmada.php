@@ -3,6 +3,8 @@
 include "lib/bd/base_datos.php";
 include "lib/bd/utilidades.php";
 
+$conexion = get_conexion();
+seleccionar_bd_gestorCitas($conexion);
 session_start();
 
 if (isset($_SESSION['usuario'])){
@@ -13,35 +15,37 @@ $mensajes = array();
 $usuario = "";
 $password = "";
 
+if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['email_cliente'], $_GET['tlf_cliente'], $_GET['codigo_unico'])) {
+  $id_servicio = $_GET['id_servicio'];
+  $fecha = $_GET['fecha'];
+  $nombre_cliente = $_GET['nombre_cliente'];
+  $email_cliente = $_GET['email_cliente'];
+  $tlf_cliente = $_GET['tlf_cliente'];
+  $codigo_unico = $_GET['codigo_unico'];
+} else {
+  $mensajes[] = array("error", "Ha ocurrido un error.");
+ }
 
-/* VALIDACIONES */
-if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login'])){
-  if(!empty($_POST['usuario']) && is_string($_POST['usuario']) && strlen($_POST['usuario']) <= 50){
-      $usuario = test_input($_POST['usuario']);
-  }else{
-      $mensajes[] = array("error", "Introduce un nombre de usuario válido: texto y menos de 50 caracteres.");
-  }
+ $servicio = get_id_negocio($conexion,$id_servicio);
 
-  if(!empty($_POST['password']) && is_string($_POST['password']) && strlen($_POST['password']) <= 30){
-      $password = test_input($_POST['password']);
-  }else{
-      $mensajes[] = array("error", "Introduce una contraseña válida: texto y menos de 30 caracteres.");
-  }
-}
+ if($servicio){
+  $id_negocio = $servicio['id_negocio'];
+  $nombre_servicio = $servicio['nombre'];
 
-if(empty($mensajes)){
-  if(isset($_POST['login']) && isset($usuario) && isset($password)){
-      login($usuario, $password);
-      if(is_logged()){
-          $mensajes[] = array("success", "Usuario validado correctamente");
-          header('Location: dashboard_admin.php');
-      }else{
-          $mensajes[] = array("error", "Nombre o contraseña incorrecta.");
-      }
-  }
-}
-
+  $negocio = datos_negocio_id($conexion, $id_negocio);
+        if ($negocio) {
+            $nombre_negocio = $negocio['nombre'];  
+        } else {
+            $nombre_negocio = "Negocio no encontrado";
+        }
+    } else {
+        $nombre_negocio = "Negocio no encontrado";
+        $nombre_servicio = "Servicio no encontrado";
+    }
+ 
 ?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -70,9 +74,8 @@ if(empty($mensajes)){
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">GESTOR CITAS</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        
       </div>
-      <a href="negocios.php" class="login-boton">Atrás</a>
+      <a href="javascript:history.back()" class="login-boton">Volver atrás</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -84,17 +87,51 @@ if(empty($mensajes)){
 <!--Hero Section -->
 <section class="hero-section">
     <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
-        <h1>¡Tu cita ha sido confirmada!  Gracias por reservar con GestorCitas</h1>
-           
-    </div>
     <?= get_mensajes_html_format($mensajes); ?>
-
+        <h1>Tu cita en <?=htmlspecialchars($nombre_negocio);?> ha sido confirmada  <?=htmlspecialchars($nombre_cliente);?>  ¡Gracias por reservar con GestorCitas!</h1>
+    </div>
+    <div class="contenedor-tabla">
+            <h2>Detalles de tu cita</h2>
+            <table class="table table-bordered custom-table">
+                <thead>
+                    <tr>
+                        <th>Campo</th>
+                        <th>Detalles</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tratamiento</td>
+                        <td><?= htmlspecialchars($nombre_servicio); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Fecha</td>
+                        <td><?= htmlspecialchars($fecha); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Nombre</td>
+                        <td><?= htmlspecialchars($nombre_cliente); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Email</td>
+                        <td><?= htmlspecialchars($email_cliente); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Teléfono</td>
+                        <td><?= htmlspecialchars($tlf_cliente); ?></td>
+                    </tr>
+                    <tr>
+                        <td>Código de la cita</td>
+                        <td><?= htmlspecialchars($codigo_unico); ?></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 </section>
 <!--End Hero Section -->
 
 <!-- Footer -->
 <footer>
-  
   <div class="footerBottom">
       <p><small>Copyright &copy;2024; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
     </div>
