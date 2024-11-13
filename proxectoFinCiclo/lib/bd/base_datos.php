@@ -252,6 +252,41 @@ function get_id_negocio($conexion, $id_servicio){
 
 
 
+function get_citas_negocio($conexion, $id_administrador){
+    $negocio = datos_negocio($conexion, $id_administrador);
+
+    if($negocio){
+        $id_negocio = $negocio['id_negocio'];
+
+        $consulta = $conexion->prepare("SELECT citas.id, citas.fecha, citas.nombre_cliente, citas.email_cliente, citas.tlf_cliente,citas.codigo_unico, citas.estado, citas.id_servicio 
+        FROM citas WHERE citas.id_servicio IN (SELECT id_servicio FROM servicios WHERE id_negocio = :id_negocio)
+        ORDER BY citas.fecha ASC");
+
+        $consulta->bindParam(':id_negocio', $id_negocio);
+        $consulta->execute();
+
+        $citas = $consulta->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($citas as &$cita){
+            $id_servicio = $cita['id_servicio'];
+            $consultaII = $conexion->prepare("SELECT nombre FROM servicios WHERE id_servicio = :id_servicio");
+            $consultaII->bindParam(':id_servicio', $id_servicio);
+            $consultaII->execute();
+
+            $servicio = $consultaII->fetch(PDO::FETCH_ASSOC);
+            $cita['servicio_nombre'] = $servicio ? $servicio['nombre'] : null;
+        }
+
+        unset($cita);
+        return $citas;
+    }else{
+        return[];
+    }
+
+}
+
+
+
 function login($usuario, $password){
     if(!isset($_SESSION)){
         session_start();

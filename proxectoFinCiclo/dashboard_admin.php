@@ -1,5 +1,6 @@
 <?php
 
+//Link descargar FULLCALENDAR calendario: https://www.youtube.com/watch?v=Nb_04gx20-A
 include "lib/bd/base_datos.php";
 include "lib/bd/utilidades.php";
 
@@ -211,46 +212,48 @@ if (isset($_GET['delete_servicio'])) {
     </section>
     <section class="cuatro" id="opcionesI">
       <section id="opciones">
-        <h2>Elige tu opción...</h2>
-        <div class="contenedor">
-            <div class="opcion">
-                <h3>BÁSICO</h3>
-                <p>Texto</p>
-                <ul>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                </ul>
-            </div>
-            <div class="opcion">
-                <h3>AVANZADO</h3>
-                <p>Texto</p>
-                <ul>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                </ul>
-            </div>
+        <h2>Mis citas</h2>
+        <div class="container">
+      <?php 
+        $citas = get_citas_negocio($conexion, $id_administrador);
+        if (count($citas) > 0): 
+      ?>
+        <div class="table-responsive">
+          <table class="table-citas table-bordered table-striped">
+            <thead>
+              <tr>
+                <th>Servicio</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Código único</th>
+                <th>Estado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php foreach ($citas as $cita): ?>
+                <tr>
+                  <td><?= htmlspecialchars($cita['servicio_nombre']); ?></td>
+                  <td><?= date("d/m/Y H:i", strtotime($cita['fecha'])); ?></td>
+                  <td><?= htmlspecialchars($cita['nombre_cliente']); ?></td>
+                  <td><?= htmlspecialchars($cita['email_cliente']); ?></td>
+                  <td><?= htmlspecialchars($cita['tlf_cliente']); ?></td>
+                  <td><?= htmlspecialchars($cita['codigo_unico']); ?></td>
+                  <td>
+                    <span class="badge bg-<?= ($cita['estado'] === 'confirmada') ? 'primary' : ($cita['estado'] === 'cancelada' ? 'danger' : 'success') ?>">
+                      <?= ucfirst($cita['estado']); ?>
+                    </span>
+                  </td>
+                </tr>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
         </div>
-        <section class="masDatos"></section>
-          <div class="iconosI">
-            <div class="iconoI">
-              <i class="fa-solid fa-tag"></i>
-              <h4>TEXTO</h4>
-              <h3>Texto</h3>
-            </div>
-            <div class="iconoI">
-              <i class="fa-solid fa-bed"></i>
-              <h4>TEXTO</h4>
-              <h3>Texto</h3>
-
-            </div>
-            <div class="iconoI">
-              <i class="fa-solid fa-user-tie"></i>     
-              <h4>TEXTO</h4>
-              <h3>Texto</h3>
-            </div>
-          </div>
+      <?php else: ?>
+        <p>No hay citas programadas.</p>
+      <?php endif; ?>
+    </div>
         </section>
     </section>
     </section>
