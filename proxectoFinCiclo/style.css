@@ -485,7 +485,7 @@ form{
   }
 
 .dos{
-    background-color: rgb(231, 107, 169);
+    background: linear-gradient(hotpink, rgb(231, 107, 169));
     clip-path: polygon(0 0, 100% 0%, 100% 80%, 50% 100%, 0 80%);
     display: flex;
     flex-direction: column;
@@ -897,6 +897,10 @@ form{
     border-spacing: 0; 
     overflow: hidden; 
     border:1px solid #ddd; 
+}
+.table-responsive{
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
+
 }
 
 .table-citas th, .table-citas td {
