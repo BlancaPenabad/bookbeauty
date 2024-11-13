@@ -245,6 +245,10 @@ if (isset($_GET['delete_servicio'])) {
                       <?= ucfirst($cita['estado']); ?>
                     </span>
                   </td>
+                  <td>
+                  <button class="btn btn-warning btn-sm">Editar</button>
+                  <button class="btn btn-danger btn-sm">Eliminar</button>
+                  </td>
                 </tr>
               <?php endforeach; ?>
             </tbody>
