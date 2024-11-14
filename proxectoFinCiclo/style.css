@@ -444,7 +444,7 @@ form{
     box-shadow: 0 0 15px 5px rgba(255, 255, 255, 0.8);
 }
 .uno{
-    background: linear-gradient(rgb(255, 255, 255), rgb(231, 107, 169));
+    background: linear-gradient(rgb(255, 255, 255), hotpink);
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -915,5 +915,12 @@ form{
 
 .table-citas td {
     vertical-align: middle;
+    color: #000000;
+}
+
+#calendar {
+    width: 100%; 
+    height: 600px; 
+    max-width: 100%; 
     color: #000000;
 }

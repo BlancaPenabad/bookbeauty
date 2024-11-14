@@ -69,6 +69,16 @@ if (isset($_GET['delete_servicio'])) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+          initialView: 'dayGridMonth',
+          locale:"es"
+        });
+        calendar.render();
+      });
+    </script>
     <link href="style.css" rel="stylesheet">
     
 </head>
@@ -115,7 +125,7 @@ if (isset($_GET['delete_servicio'])) {
         <h1>Administradores</h1>
         <p>Zona restringida administradores</p>
         <a href="#servicios" class="home-btn">Mis servicios</a>
-        <a href="#opciones" class="home-btn">Mis citas</a>
+        <a href="#opcionesI" class="home-btn">Mis citas</a>
       </div>
     </section>
     <section class="dos"  id="miNegocio">
@@ -211,6 +221,12 @@ if (isset($_GET['delete_servicio'])) {
     </div>
     </section>
     <section class="cuatro" id="opcionesI">
+    <script src='js/index.global.min.js'></script>
+    <script src='js/core/locales-all.global.min.js'></script>
+    <script src='js/custom.js'></script>
+
+    <div id="calendar"></div>
+        <!-- 
       <section id="opciones">
         <h2>Mis citas</h2>
         <div class="container">
@@ -259,6 +275,7 @@ if (isset($_GET['delete_servicio'])) {
       <?php endif; ?>
     </div>
         </section>
+        -->
     </section>
     </section>
     
