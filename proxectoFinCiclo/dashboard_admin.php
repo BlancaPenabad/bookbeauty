@@ -66,6 +66,7 @@ if (isset($_GET['delete_servicio'])) {
     <title>Zona administrador</title>
 <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
@@ -221,58 +222,39 @@ if (isset($_GET['delete_servicio'])) {
     </div>
     </section>
     <section class="cuatro" id="opcionesI">
-    <script src='js/index.global.min.js'></script>
-    <script src='js/core/locales-all.global.min.js'></script>
-    <script src='js/custom.js'></script>
+ 
 
     <div id="calendar"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src='js/index.global.min.js'></script>
+    <script src="js/bootstrap5/index.global.min.js"></script>
+    <script src='js/core/locales-all.global.min.js'></script>
+
         <!-- 
       <section id="opciones">
         <h2>Mis citas</h2>
         <div class="container">
       <?php 
+        $eventos = [];
         $citas = get_citas_negocio($conexion, $id_administrador);
-        if (count($citas) > 0): 
+
+
+        foreach($citas as $cita){
+          $eventos[] = [
+            'title' => $cita['servicio_nombre'],
+            'start' => $cita['fecha'],
+            'end' => date('Y-m-d H:i:s', strtotime($cita['fecha'] . ' + ' . $cita['duracion'] . ' minutes')),
+            'extendedProps' => [
+              'nombre_cliente' => $cita['nombre_cliente'],
+              'telefono_cliente' => $cita['tlf_cliente'],
+              'email_cliente' => $cita['email_cliente'],
+              'codigo_unico' => $cita['codigo_unico'],
+              'estado' => $cita['estado']
+                 ]
+            ];
+        }
       ?>
-        <div class="table-responsive">
-          <table class="table-citas table-bordered table-striped">
-            <thead>
-              <tr>
-                <th>Servicio</th>
-                <th>Fecha</th>
-                <th>Cliente</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Código único</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody>
-              <?php foreach ($citas as $cita): ?>
-                <tr>
-                  <td><?= htmlspecialchars($cita['servicio_nombre']); ?></td>
-                  <td><?= date("d/m/Y H:i", strtotime($cita['fecha'])); ?></td>
-                  <td><?= htmlspecialchars($cita['nombre_cliente']); ?></td>
-                  <td><?= htmlspecialchars($cita['email_cliente']); ?></td>
-                  <td><?= htmlspecialchars($cita['tlf_cliente']); ?></td>
-                  <td><?= htmlspecialchars($cita['codigo_unico']); ?></td>
-                  <td>
-                    <span class="badge bg-<?= ($cita['estado'] === 'confirmada') ? 'primary' : ($cita['estado'] === 'cancelada' ? 'danger' : 'success') ?>">
-                      <?= ucfirst($cita['estado']); ?>
-                    </span>
-                  </td>
-                  <td>
-                  <button class="btn btn-warning btn-sm">Editar</button>
-                  <button class="btn btn-danger btn-sm">Eliminar</button>
-                  </td>
-                </tr>
-              <?php endforeach; ?>
-            </tbody>
-          </table>
-        </div>
-      <?php else: ?>
-        <p>No hay citas programadas.</p>
-      <?php endif; ?>
+      
     </div>
         </section>
         -->
@@ -306,36 +288,11 @@ if (isset($_GET['delete_servicio'])) {
       }
     })
     
-    
-    flatpickr("#fecha", {
-            disable: [
-                function(date) {
-                    // Deshabilitar sábados (6) y domingos (0)
-                    return (date.getDay() === 0 || date.getDay() === 6);
-                }
-            ],
-            dateFormat: "Y-m-d", // Formato de fecha
-            minDate: "today", // Deshabilitar fechas pasadas
-            locale:{
-              firstDayOfWeek:1
-            }
-        });
-    
-        flatpickr("#hora", {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i", // Formato de hora
-        altFormat: "h:i", // Formato alternativo para mostrar
-        time_24hr: true,
-        minTime: "10:00", // Hora mínima
-        maxTime: "20:00", // Hora máxima
-        minuteIncrement: 30, // Intervalo de minutos
-    
-        onReady: function() {
-            this.calendarContainer.classList.add('custom-timepicker'); // Para estilos personalizados si lo deseas
-        }
-    });
+   
 </script>
+<script>    var eventos = <?php echo json_encode($eventos); ?>; </script>
+<script src='js/custom.js'></script>
+
     <?php cerrar_conexion($conexion);?>
 </body>
 </html>
