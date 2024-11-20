@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', function() {
       locale: 'es',
       //initialDate: '2023-01-12',
       initialDate: '2024-11-14',
-      navLinks: true, // can click day/week names to navigate views
+      navLinks: true, 
       selectable: true,
       selectMirror: true,
       select: function(arg) {
@@ -31,12 +31,31 @@ document.addEventListener('DOMContentLoaded', function() {
         calendar.unselect()
       },
       eventClick: function(arg) {
-        if (confirm('¿Estás seguro de que quieres eliminar este evento?')) {
-          arg.event.remove()
-        }
+        var event = arg.event;
+
+        //Modal
+        document.getElementById('eventTitle').textContent = event.title;
+        document.getElementById('eventStart').textContent = event.start.toLocaleString();
+        document.getElementById('eventEnd').textContent = event.end ? event.end.toLocaleString() : 'No disponible';
+        document.getElementById('eventCliente').textContent = event.extendedProps.nombre_cliente;
+        document.getElementById('eventTelefono').textContent = event.extendedProps.telefono_cliente;
+        document.getElementById('eventEmail').textContent = event.extendedProps.email_cliente;
+        document.getElementById('eventCodigo').textContent = event.extendedProps.codigo_unico;
+        document.getElementById('eventEstado').textContent = event.extendedProps.estado;
+  
+        var modal = new bootstrap.Modal(document.getElementById('eventModal'));
+        modal.show();
+  
+        //Botón de eliminar
+        document.getElementById('deleteEventBtn').onclick = function() {
+          if (confirm('¿Estás seguro de que quieres eliminar este evento?')) {
+            event.remove(); 
+            modal.hide(); 
+          }
+        };
       },
       editable: true,
-      dayMaxEvents: true, // allow "more" link when too many events
+      dayMaxEvents: true, 
       events: eventos, 
       eventColor: 'lightblue', 
     });
