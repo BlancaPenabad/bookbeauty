@@ -269,12 +269,19 @@ function get_citas_negocio($conexion, $id_administrador){
 
         foreach($citas as &$cita){
             $id_servicio = $cita['id_servicio'];
-            $consultaII = $conexion->prepare("SELECT nombre FROM servicios WHERE id_servicio = :id_servicio");
+            $consultaII = $conexion->prepare("SELECT nombre, duracion FROM servicios WHERE id_servicio = :id_servicio");
             $consultaII->bindParam(':id_servicio', $id_servicio);
             $consultaII->execute();
 
             $servicio = $consultaII->fetch(PDO::FETCH_ASSOC);
             $cita['servicio_nombre'] = $servicio ? $servicio['nombre'] : null;
+            $cita['duracion'] = $servicio ? $servicio['duracion'] : 0;
+
+            if ($cita['fecha'] && $cita['duracion'] > 0) {
+                $fecha_cita = new DateTime($cita['fecha']);
+                $fecha_cita->modify('+' . $cita['duracion'] . ' minutes');
+                $cita['fecha_final'] = $fecha_cita->format('Y-m-d H:i:s'); 
+            }
         }
 
         unset($cita);

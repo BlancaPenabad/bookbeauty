@@ -243,7 +243,7 @@ if (isset($_GET['delete_servicio'])) {
           $eventos[] = [
             'title' => $cita['servicio_nombre'],
             'start' => $cita['fecha'],
-            'end' => date('Y-m-d H:i:s', strtotime($cita['fecha'] . ' + ' . $cita['duracion'] . ' minutes')),
+            'end' => $cita['fecha_final'],
             'extendedProps' => [
               'nombre_cliente' => $cita['nombre_cliente'],
               'telefono_cliente' => $cita['tlf_cliente'],
@@ -258,31 +258,31 @@ if (isset($_GET['delete_servicio'])) {
     </div>
         </section>
         -->
-        <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="eventModalLabel">Detalles del Evento</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <!-- Aquí se cargarán los datos del evento -->
-        <p><strong>Servicio:</strong> <span id="eventTitle"></span></p>
-        <p><strong>Fecha:</strong> <span id="eventStart"></span> a <span id="eventEnd"></span></p>
-        <p><strong>Cliente:</strong> <span id="eventCliente"></span></p>
-        <p><strong>Teléfono:</strong> <span id="eventTelefono"></span></p>
-        <p><strong>Email:</strong> <span id="eventEmail"></span></p>
-        <p><strong>Código único:</strong> <span id="eventCodigo"></span></p>
-        <p><strong>Estado:</strong> <span id="eventEstado"></span></p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" id="deleteEventBtn">Eliminar</button>
-        <button type="button" class="btn btn-warning" id="editEventBtn">Editar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+    <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="eventModalLabel">Detalles de la cita:</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <!-- Aquí se cargarán los datos del evento -->
+            <p><strong>Servicio:</strong> <span id="eventTitle"></span></p>
+            <p><strong>Fecha:</strong> <span id="eventStart"></span> a <span id="eventEnd"></span></p>
+            <p><strong>Cliente:</strong> <span id="eventCliente"></span></p>
+            <p><strong>Teléfono:</strong> <span id="eventTelefono"></span></p>
+            <p><strong>Email:</strong> <span id="eventEmail"></span></p>
+            <p><strong>Código único:</strong> <span id="eventCodigo"></span></p>
+            <p><strong>Estado:</strong> <span id="eventEstado"></span></p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" id="deleteEventBtn">Eliminar</button>
+            <button type="button" class="btn btn-warning" id="editEventBtn">Editar</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
     </section>
     </section>

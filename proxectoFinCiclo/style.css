@@ -924,3 +924,11 @@ form{
     max-width: 100%; 
     color: #000000;
 }
+
+#eventModal .modal-body{
+    color: #333;;
+}
+
+#eventModal .modal-header .modal-title{
+    color: #333;
+}
