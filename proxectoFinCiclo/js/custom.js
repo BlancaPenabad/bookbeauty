@@ -54,10 +54,19 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         };
       },
-      editable: true,
+      editable: false,
+      droppable: false,
       dayMaxEvents: true, 
-      events: eventos, 
-      eventColor: 'lightblue', 
+      businessHours: {                   
+        daysOfWeek: [1, 2, 3, 4, 5],          // Lunes a viernes 
+        startTime: '09:00',                // Hora de inicio y fin del horario comercial
+        endTime: '20:00',  
+    },
+    minTime: "09:00:00",               
+    maxTime: "20:00:00", 
+       
+    events: eventos, 
+    eventColor: 'lightblue', 
     });
 
     calendar.render();
