@@ -854,6 +854,7 @@ form{
 #formulario-delete{
     background-color: none;  
     padding: 0px;  
+    margin: 0px;
 }
 
 .contenedor-tabla{
@@ -871,52 +872,13 @@ form{
     
 }
 
-/* Estilo de las celdas de la tabla */
+/*Estilo de las celdas de la tabla*/
 .custom-table td {
     font-size: 1.2rem; 
     padding: 10px; 
     border-top: 1px solid #ddd; 
 }
 
-/*Tabla citas*/
-.badge.bg-primary {
-    background-color: #007bff;
-}
-
-.badge.bg-danger {
-    background-color: #dc3545;
-}
-
-.badge.bg-success {
-    background-color: #28a745;
-}
-
-.table-citas {
-    border-radius: 10px;
-    border-collapse: separate; 
-    border-spacing: 0; 
-    overflow: hidden; 
-    border:1px solid #ddd; 
-}
-.table-responsive{
-    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.5);
-
-}
-
-.table-citas th, .table-citas td {
-    text-align: center;
-    padding: 5px;
-}
-
-.table-citas th {
-    background-color: rgb(255, 255, 255);
-    color: #000000;
-}
-
-.table-citas td {
-    vertical-align: middle;
-    color: #000000;
-}
 
 #calendar {
     width: 100%; 
@@ -932,3 +894,4 @@ form{
 #eventModal .modal-header .modal-title{
     color: #333;
 }
+

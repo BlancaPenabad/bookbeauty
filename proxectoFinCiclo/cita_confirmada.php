@@ -42,6 +42,10 @@ if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['
         $nombre_negocio = "Negocio no encontrado";
         $nombre_servicio = "Servicio no encontrado";
     }
+
+if(isset($_POST['submit'])){
+    if
+}
  
 ?>
 
@@ -93,12 +97,7 @@ if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['
     <div class="contenedor-tabla">
             <h2>Detalles de tu cita</h2>
             <table class="table table-bordered custom-table">
-                <thead>
-                    <tr>
-                        <th>Campo</th>
-                        <th>Detalles</th>
-                    </tr>
-                </thead>
+                
                 <tbody>
                     <tr>
                         <td>Tratamiento</td>

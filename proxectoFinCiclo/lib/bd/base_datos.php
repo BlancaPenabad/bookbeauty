@@ -142,7 +142,8 @@ function addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_client
 
 
 function deleteCita($conexion, $id){
-    $consulta = $conexion->prepare("DELETE FROM citas WHERE id=$id");
+    $consulta = $conexion->prepare("DELETE FROM citas WHERE id = :id");
+    $consulta->bindParam(':id', $id, PDO::PARAM_INT);
     return $consulta->execute();
 }
 
@@ -252,11 +253,8 @@ function get_id_negocio($conexion, $id_servicio){
 
 
 
-function get_citas_negocio($conexion, $id_administrador){
-    $negocio = datos_negocio($conexion, $id_administrador);
-
-    if($negocio){
-        $id_negocio = $negocio['id_negocio'];
+function get_citas_negocio($conexion, $id_negocio){
+    
 
         $consulta = $conexion->prepare("SELECT citas.id, citas.fecha, citas.nombre_cliente, citas.email_cliente, citas.tlf_cliente,citas.codigo_unico, citas.estado, citas.id_servicio 
         FROM citas WHERE citas.id_servicio IN (SELECT id_servicio FROM servicios WHERE id_negocio = :id_negocio)
@@ -283,12 +281,8 @@ function get_citas_negocio($conexion, $id_administrador){
                 $cita['fecha_final'] = $fecha_cita->format('Y-m-d H:i:s'); 
             }
         }
-
         unset($cita);
         return $citas;
-    }else{
-        return[];
-    }
 
 }
 

@@ -47,12 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
         modal.show();
   
         //Botón de eliminar
-        document.getElementById('deleteEventBtn').onclick = function() {
-          if (confirm('¿Estás seguro de que quieres eliminar este evento?')) {
-            event.remove(); 
-            modal.hide(); 
-          }
-        };
+        document.getElementById('deleteCitaId').value = event.extendedProps.id_cita;
       },
       editable: false,
       droppable: false,

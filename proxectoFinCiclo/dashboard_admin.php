@@ -30,12 +30,16 @@ $servicios = datos_servicios($conexion, $id_administrador);
 
 if($negocio === null){
   $nombre_negocio = "No tienes negocio";
+  $id_negocio = " ";
   $telefono_negocio = " ";
 }else{
+  $id_negocio = $negocio['id_negocio'];
   $nombre_negocio = $negocio['nombre'];
   $telefono_negocio = $negocio['telefono'];
   $direccion_negocio = $negocio['direccion'];
 }
+
+$citas = get_citas_negocio($conexion, $id_negocio);
 
 
 if (isset($_GET['delete_servicio'])) {
@@ -50,6 +54,37 @@ if (isset($_GET['delete_servicio'])) {
       }
       header("Location: dashboard_admin.php");
       exit();
+  }
+}
+
+
+if (isset($_POST['delete_cita_id'])) {
+  $id_cita = $_POST['delete_cita_id'];
+
+  if (is_numeric($id_cita)) {
+    if (deleteCita($conexion, $id_cita)) {
+      echo "<script>alert('Cita eliminada con éxito');</script>";
+    } else {
+      echo "<script>alert('Hubo un error al eliminar la cita');</script>";
+    }
+    // Redirigir después de eliminar
+    header("Location: dashboard_admin.php");
+    exit();
+  }
+}
+
+if (isset($_POST['delete_cita_id'])) {
+  $id_cita = $_POST['delete_cita_id'];
+
+  if (is_numeric($id_cita)) {
+    if (deleteCita($conexion, $id_cita)) {
+      echo "<script>alert('Cita eliminada con éxito');</script>";
+    } else {
+      echo "<script>alert('Hubo un error al eliminar la cita');</script>";
+    }
+    // Redirigir después de eliminar
+    header("Location: dashboard_admin.php");
+    exit();
   }
 }
 ?>
@@ -236,7 +271,6 @@ if (isset($_GET['delete_servicio'])) {
         <div class="container">
       <?php 
         $eventos = [];
-        $citas = get_citas_negocio($conexion, $id_administrador);
 
 
         foreach($citas as $cita){
@@ -245,6 +279,7 @@ if (isset($_GET['delete_servicio'])) {
             'start' => $cita['fecha'],
             'end' => $cita['fecha_final'],
             'extendedProps' => [
+              'id_cita' => $cita['id'],
               'nombre_cliente' => $cita['nombre_cliente'],
               'telefono_cliente' => $cita['tlf_cliente'],
               'email_cliente' => $cita['email_cliente'],
@@ -276,14 +311,16 @@ if (isset($_GET['delete_servicio'])) {
             <p><strong>Estado:</strong> <span id="eventEstado"></span></p>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-danger" id="deleteEventBtn">Eliminar</button>
-            <button type="button" class="btn btn-warning" id="editEventBtn">Editar</button>
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <form id="formulario-delete" action="dashboard_admin.php" method="POST">
+                <input type="hidden" id="deleteCitaId" name="delete_cita_id">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+              </form>
+                <button type="button" class="btn btn-warning" id="editEventBtn">Editar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
           </div>
         </div>
       </div>
     </div>
-
     </section>
     </section>
     
@@ -316,7 +353,7 @@ if (isset($_GET['delete_servicio'])) {
     
    
 </script>
-<script>    var eventos = <?php echo json_encode($eventos); ?>; </script>
+<script>  var eventos = <?php echo json_encode($eventos); ?>; </script>
 <script src='js/custom.js'></script>
 
     <?php cerrar_conexion($conexion);?>
