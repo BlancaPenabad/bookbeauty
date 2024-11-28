@@ -42,10 +42,6 @@ if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['
         $nombre_negocio = "Negocio no encontrado";
         $nombre_servicio = "Servicio no encontrado";
     }
-
-if(isset($_POST['submit'])){
-    if
-}
  
 ?>
 

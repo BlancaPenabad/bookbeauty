@@ -1,14 +1,9 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
 
-require 'path/to/PHPMailer/src/Exception.php';
-require 'path/to/PHPMailer/src/PHPMailer.php';
-require 'path/to/PHPMailer/src/SMTP.php';
-
-include "lib/bd/base_datos.php";
+include_once "lib/bd/base_datos.php";
 include "lib/bd/utilidades.php";
+include "correo.php";
 
 
 $conexion = get_conexion();
@@ -41,7 +36,7 @@ $horas_ocupadas = [];
 foreach ($citas_ocupadas as $cita) {
     $fecha_ocupada = new DateTime($cita['fecha']);
     $fecha_ocupada->modify('+' . $cita['duracion'] . ' minutes');
-
+    // Solo guardamos la fecha y hora (sin minutos)
     $horas_ocupadas[] = $fecha_ocupada->format('H:i'); 
 }
 
@@ -83,7 +78,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Negocios</title>
+    <title>Zona administrador</title>
 <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -236,9 +231,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
               <input type="text" id="nombre" name="nombre" required>
               <label for="email">Email:</label>
               <input type="email" id="email" name="email" required>
-              <label for="email">Teléfono:</label>
+              <label for="tlf">Teléfono:</label>
               <input type="text" id="tlf" name="tlf" required>
-              <button type="submit" class="btn btn-primary">Reservar</button>
+              <button type="submit" name="submit" class="btn btn-primary">Reservar</button>
           </form>
         </div>
     </div>
