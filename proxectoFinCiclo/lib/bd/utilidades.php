@@ -1,5 +1,11 @@
 <?php
 
+require_once __DIR__ . '/../../../vendor/autoload.php';  
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+
 function test_input($datos){
     $datos = trim($datos);
     $datos = stripslashes($datos);
@@ -47,5 +53,38 @@ function logout(){
     exit();
 
 }
+
+function enviarCorreoConfirmacion($email, $nombre_cliente, $nombre_negocio, $fecha, $codigo_unico) {
+    $mail = new PHPMailer(true);
+
+    $mail->CharSet = 'UTF-8';
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; 
+        $mail->SMTPAuth = true;
+        $mail->Username = 'a22blancapv@iessanclemente.net';  //Mi correo de Gmail
+        $mail->Password = 'mukh fyqy bslf amub'; // Contraseña de aplicación
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        $mail->setFrom('a22blancapv@iessanclemente.net', 'Gestor Citas');
+        $mail->addAddress($email);  // Email del cliente
+
+        $mail->isHTML(true);
+        $mail->Subject = 'Confirmación de cita en ' . $nombre_negocio;
+        $mail->Body    = "Hola <b>$nombre_cliente</b>,<br><br>
+                          Tu cita ha sido confirmada en <b>$nombre_negocio</b>.<br>
+                          <b>Fecha y Hora:</b> $fecha<br>
+                          <b>Código de cita:</b> $codigo_unico<br><br>
+                          ¡Te esperamos!<br><br>
+                          Gracias por utilizar nuestro sistema de reservas.";
+
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Error al enviar el correo: {$mail->ErrorInfo}";
+    }
+}
+
 
 ?>

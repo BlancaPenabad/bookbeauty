@@ -56,6 +56,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     if ($resultado) {
       $mensajes[] = array("success", "Tu cita se ha registrado correctamente. ¡Gracias!");
+
+      enviarCorreoConfirmacion($email_cliente, $nombre_cliente,$nombre_negocio, $fecha, $codigo_unico);
+
       header('Location: cita_confirmada.php?id_servicio=' . urlencode($id_servicio) . '&fecha=' . urlencode($fecha) . '&nombre_cliente=' . urlencode($nombre_cliente) . '&email_cliente=' . urlencode($email_cliente) . '&tlf_cliente=' . urlencode($tlf_cliente) . '&codigo_unico=' . urlencode($codigo_unico));
       exit;
   } else {
@@ -63,6 +66,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   }
 
 }
+
 
 
 ?>
