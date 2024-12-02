@@ -1,9 +1,8 @@
 <?php
 
 
-include_once "lib/bd/base_datos.php";
+include "lib/bd/base_datos.php";
 include "lib/bd/utilidades.php";
-include "correo.php";
 
 
 $conexion = get_conexion();
