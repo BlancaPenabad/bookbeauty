@@ -72,21 +72,6 @@ if (isset($_POST['delete_cita_id'])) {
     exit();
   }
 }
-
-if (isset($_POST['delete_cita_id'])) {
-  $id_cita = $_POST['delete_cita_id'];
-
-  if (is_numeric($id_cita)) {
-    if (deleteCita($conexion, $id_cita)) {
-      echo "<script>alert('Cita eliminada con éxito');</script>";
-    } else {
-      echo "<script>alert('Hubo un error al eliminar la cita');</script>";
-    }
-    // Redirigir después de eliminar
-    header("Location: dashboard_admin.php");
-    exit();
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -242,7 +227,41 @@ if (isset($_POST['delete_cita_id'])) {
                                   <input type="hidden" name="delete_servicio" value="<?= $servicio['id_servicio']; ?>">
                                   <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                               </form>
-                              <button class="btn btn-warning btn-sm">Editar</button>
+                              <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="cargarDatosServicio(<?= $servicio['id_servicio']; ?>)">Editar</button>
+
+                              <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                      <h5 class="modal-title" id="editModalLabel">Editar Servicio</h5>
+                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                      <form id="editServicioForm" method="POST" action="editarServicio.php">
+                                        <input type="hidden" id="editServicioId" name="id_servicio">
+                                        <div class="mb-3">
+                                          <label for="editNombre" class="form-label">Nombre</label>
+                                          <input type="text" class="form-control" id="editNombre" name="nombre" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="editDescripcion" class="form-label">Descripción</label>
+                                          <textarea class="form-control" id="editDescripcion" name="descripcion" required></textarea>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="editPrecio" class="form-label">Precio</label>
+                                          <input type="number" class="form-control" id="editPrecio" name="precio" step="0.01" required>
+                                        </div>
+                                        <div class="mb-3">
+                                          <label for="editDuracion" class="form-label">Duración (minutos)</label>
+                                          <input type="number" class="form-control" id="editDuracion" name="duracion" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                      </form>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                               </td>
                           </tr>
                       <?php endforeach; ?>
@@ -336,8 +355,8 @@ if (isset($_POST['delete_cita_id'])) {
           const content = header.nextElementSibling;
           const button = header.querySelector('.accordion-button');
     
-          content.classList.toggle('show'); // Muestra u oculta el contenido
-          button.textContent = button.textContent === '+' ? '-' : '+'; // Cambia el símbolo
+          content.classList.toggle('show'); 
+          button.textContent = button.textContent === '+' ? '-' : '+'; 
       });
     });
     
@@ -351,6 +370,19 @@ if (isset($_POST['delete_cita_id'])) {
       }
     })
     
+
+    function cargarDatosServicio(idServicio) {
+    var servicios = <?php echo json_encode($servicios); ?>;
+    var servicio = servicios.find(s => s.id_servicio === idServicio);
+    
+    if (servicio) {
+        document.getElementById('editServicioId').value = servicio.id_servicio;
+        document.getElementById('editNombre').value = servicio.nombre;
+        document.getElementById('editDescripcion').value = servicio.descripcion;
+        document.getElementById('editPrecio').value = servicio.precio;
+        document.getElementById('editDuracion').value = servicio.duracion;
+    }
+}
    
 </script>
 <script>  var eventos = <?php echo json_encode($eventos); ?>; </script>

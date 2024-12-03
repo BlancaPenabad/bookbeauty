@@ -126,6 +126,20 @@ function deleteServicio($conexion, $id_servicio){
 
 
 
+function updateServicio($conexion, $id_servicio, $nombre_servicio, $duracion, $precio, $descripcion) {
+    $consulta = $conexion->prepare("UPDATE servicios SET nombre = :nombre_servicio, descripcion = :descripcion, precio = :precio, duracion = :duracion WHERE id_servicio = :id_servicio");
+
+    $consulta->bindParam(':nombre_servicio', $nombre_servicio);
+    $consulta->bindParam(':descripcion', $descripcion);
+    $consulta->bindParam(':precio', $precio); 
+    $consulta->bindParam(':duracion', $duracion); 
+    $consulta->bindParam(':id_servicio', $id_servicio); 
+
+    return $consulta->execute();
+}
+
+
+
 function addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_cliente, $tlf_cliente, $codigo_unico){
 
     $consulta = $conexion->prepare("INSERT INTO citas (id_servicio, fecha, nombre_cliente, email_cliente, tlf_cliente, codigo_unico) VALUES (:id_servicio, :fecha, :nombre_cliente, :email_cliente, :tlf_cliente, :codigo_unico)");
