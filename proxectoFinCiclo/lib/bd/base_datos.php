@@ -155,6 +155,20 @@ function addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_client
 
 
 
+function updateCita($conexion, $id_cita, $id_servicio, $fecha, $nombre_cliente, $email_cliente, $tlf_cliente) {
+    $consulta = $conexion->prepare("UPDATE citas SET id_servicio = :id_servicio, fecha = :fecha, nombre_cliente = :nombre_cliente, email_cliente = :email_cliente, tlf_cliente = :tlf_cliente WHERE id = :id_cita");
+
+    $consulta->bindParam(':id_servicio', $id_servicio);
+    $consulta->bindParam(':fecha', $fecha);
+    $consulta->bindParam(':nombre_cliente', $nombre_cliente);
+    $consulta->bindParam(':email_cliente', $email_cliente);
+    $consulta->bindParam(':tlf_cliente', $tlf_cliente);
+    $consulta->bindParam(':id_cita', $id_cita);
+
+    return $consulta->execute();
+}
+
+
 function deleteCita($conexion, $id){
     $consulta = $conexion->prepare("DELETE FROM citas WHERE id = :id");
     $consulta->bindParam(':id', $id, PDO::PARAM_INT);

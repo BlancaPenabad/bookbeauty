@@ -261,7 +261,6 @@ if (isset($_POST['delete_cita_id'])) {
                                   </div>
                                 </div>
                               </div>
-
                               </td>
                           </tr>
                       <?php endforeach; ?>
@@ -312,6 +311,7 @@ if (isset($_POST['delete_cita_id'])) {
     </div>
         </section>
         -->
+    <!-- Modal para editar SERVICIOS -->
     <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -336,6 +336,52 @@ if (isset($_POST['delete_cita_id'])) {
               </form>
                 <button type="button" class="btn btn-warning" id="editEventBtn">Editar</button>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Modal para editar CITAS -->
+    <div class="modal fade" id="editCitaModal" tabindex="-1" aria-labelledby="editCitaModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="editCitaModalLabel">Editar Cita</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="editCitaForm" action="editarCita.php" method="POST">
+              <input type="hidden" id="editCitaId" name="id_cita">
+              <div class="mb-3">
+                  <label for="editCitaServicio" class="form-label">Servicio</label>
+                  <select class="form-control" id="editCitaServicio" name="id_servicio" required>
+                      <option value="">Seleccione un servicio</option>
+                      <?php
+                      $servicios = datos_servicios($conexion, $id_administrador);
+                      foreach ($servicios as $servicio) {
+                          echo "<option value='" . $servicio['id_servicio'] . "' " . ($servicio['id_servicio'] == $evento['id_servicio'] ? 'selected' : '') . ">" . htmlspecialchars($servicio['nombre']) . "</option>";
+                      }
+                      ?>
+                  </select>
+              </div>
+              <div class="mb-3">
+                <label for="editCitaFecha" class="form-label">Fecha</label>
+                <input type="datetime-local" class="form-control" id="editCitaFecha" name="fecha" required>
+              </div>
+              <div class="mb-3">
+                <label for="editCitaCliente" class="form-label">Cliente</label>
+                <input type="text" class="form-control" id="editCitaCliente" name="cliente" required>
+              </div>
+              <div class="mb-3">
+                <label for="editCitaTelefono" class="form-label">Teléfono</label>
+                <input type="tel" class="form-control" id="editCitaTelefono" name="telefono" required>
+              </div>
+              <div class="mb-3">
+                <label for="editCitaEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="editCitaEmail" name="email" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </form>
           </div>
         </div>
       </div>
@@ -383,7 +429,22 @@ if (isset($_POST['delete_cita_id'])) {
         document.getElementById('editDuracion').value = servicio.duracion;
     }
 }
-   
+   document.getElementById('editEventBtn').addEventListener('click', function() {
+    var citaId = document.getElementById('deleteCitaId').value; 
+    var evento = eventos.find(evento => evento.extendedProps.id_cita == citaId); 
+
+    if (evento) {
+        document.getElementById('editCitaId').value = evento.extendedProps.id_cita;
+        document.getElementById('editCitaServicio').value = evento.title;
+        document.getElementById('editCitaFecha').value = evento.start;
+        document.getElementById('editCitaCliente').value = evento.extendedProps.nombre_cliente;
+        document.getElementById('editCitaTelefono').value = evento.extendedProps.telefono_cliente;
+        document.getElementById('editCitaEmail').value = evento.extendedProps.email_cliente;
+
+        new bootstrap.Modal(document.getElementById('editCitaModal')).show();
+    }
+});
+
 </script>
 <script>  var eventos = <?php echo json_encode($eventos); ?>; </script>
 <script src='js/custom.js'></script>
