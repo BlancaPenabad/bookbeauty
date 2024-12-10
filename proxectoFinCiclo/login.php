@@ -47,7 +47,7 @@ if(empty($mensajes)){
 <head>
 <!--
     Autora: Blanca Penabad Villar
-    Email: practicas.daw@moonoff.com
+    Email: a22blancapv@iessanclemente.net
 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
