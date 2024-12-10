@@ -49,8 +49,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   $email_cliente = $_POST['email'];
   $tlf_cliente = $_POST['tlf'];
 
-  $codigo_unico = strtoupper(uniqid('CITA', true));
-
+  $codigo_unico = 'CITA' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+  
     $resultado = addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_cliente, $tlf_cliente, $codigo_unico);
 
     if ($resultado) {

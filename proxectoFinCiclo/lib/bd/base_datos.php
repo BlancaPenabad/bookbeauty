@@ -62,6 +62,7 @@ function crear_tabla_negocios($conexion){
         direccion VARCHAR(255) NOT NULL,
         telefono VARCHAR(15),
         id_administrador INT,
+        foto_negocio VARCHAR(255),
         FOREIGN KEY (id_administrador) REFERENCES administrador(id) ON DELETE CASCADE
         )";
 

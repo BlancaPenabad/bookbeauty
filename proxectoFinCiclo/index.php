@@ -54,7 +54,7 @@ $negocios = nombres_negocios($conexion);
               <a class="nav-link mx-lg-2" href="#beneficios">BENEFICIOS</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#reserva">RESERVA TU CITA</a>
+              <a class="nav-link mx-lg-2" href="#reserva">CONSULTA TU CITA</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="#opcionesI">OPCIONES</a>
@@ -152,30 +152,13 @@ $negocios = nombres_negocios($conexion);
     </section>
     <section class="tres"  id="reserva">
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
-        <h2 id="h2Reserva">Reserva tu <b>CITA</b></h2>
-        <h2>Rápido, sencillo y sin necesidad de darte de alta!</h2>
+        <h2 id="h2Reserva">Consulta tu <b>CITA</b></h2>
+        <h2>Ingresa el código único para consultar tus datos.</h2>
         <div id="reserva" class="reserva-container">
-          <form class="reserva-form">
-               <!--FALTA AÑADIR EL SELECT DE SERVICIOS-->
-              <label for="opcionSelect">Servicios:</label>
-                <select id="opcionSelect" name="opcionSelect" required>
-                    <option value="" disabled selected>Elige una opción</option>
-                    <option value="opcion1">Balayage</option>
-                    <option value="opcion2">Babylights</option>
-                    <option value="opcion3">Tinte</option>
-                </select>
-              <label for="fecha">Fecha y hora:</label>
-              <div class="fecha-hora-container">
-                <input type="text" id="fecha" name="fecha" required>
-                <input type="time" id="hora" name="hora" required>
-              </div>
-              <label for="nombre">Nombre:</label>
-              <input type="text" id="nombre" name="nombre" required>
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
-              <label for="email">Teléfono:</label>
-              <input type="text" id="tlf" name="tlf" required>
-              <button type="submit" class="btn btn-primary">Reservar</button>
+          <form action="consultaCita.php" method="GET" class="reserva-form">
+              <label for="codigo_unico">Código de la cita:</label>
+              <input type="text" id="codigo_unico" name="codigo_unico" required>
+              <button type="submit" class="btn btn-primary">Consultar cita</button>
           </form>
         </div>
     </div>
@@ -278,9 +261,9 @@ $negocios = nombres_negocios($conexion);
     </div>
     <div class="footerNav">
       <ul>
-        <li><a href="#sobrenosotros">Sobre nosotros</a></li>
+        <li><a href="#sobrenosotros">Negocios</a></li>
         <li><a href="#beneficios">Beneficios</a></li>
-        <li><a href="#reserva">Haz tu reserva</a></li>
+        <li><a href="#reserva">Consulta tu cita</a></li>
         <li><a href="#opciones">Opciones</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
