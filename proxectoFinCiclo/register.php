@@ -65,7 +65,7 @@ if (isset($_POST['enviar'])) {
 <?= get_mensajes_html_format($mensajes); ?>
     <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <h1>Registro de administradores</h1>
-            <form class="mx-auto" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form id="form" class="mx-auto" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div class="mb-3">
                     <label for="userName" class="form-label">Nombre de usuario:</label>
                     <input type="text" class="form-control" name="usuario" >

@@ -85,7 +85,7 @@ if(empty($mensajes)){
 <section class="hero-section">
     <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <h1>Iniciar sesión</h1>
-            <form class="mx-auto" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            <form id="form" class="mx-auto" method="post" action="<?= htmlspecialchars($_SERVER["PHP_SELF"]);?>">
                 <div class="mb-3">
                     <label for="userName" class="form-label">Nombre de usuario:</label>
                     <input type="text" class="form-control" id="usuario" name="usuario" aria-describedby="emailHelp" placeholder="Nombre de usuario" value="<?= $usuario?>">

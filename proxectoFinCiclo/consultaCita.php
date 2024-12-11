@@ -8,6 +8,8 @@ if (isset($_GET['codigo_unico'])) {
     $conexion = get_conexion();
     seleccionar_bd_gestorCitas($conexion);
 
+    $mensajes = array();
+
     $consulta = $conexion->prepare("SELECT * FROM citas WHERE codigo_unico = :codigo_unico");
     $consulta->bindParam(":codigo_unico", $codigo_unico);
     $consulta->execute();
@@ -15,14 +17,42 @@ if (isset($_GET['codigo_unico'])) {
     if ($consulta->rowCount() > 0) {
         // Cita encontrada
         $cita = $consulta->fetch(PDO::FETCH_ASSOC);
+
+        $id_servicio = $cita['id_servicio'];
+        $servicio = $conexion->prepare("SELECT nombre FROM servicios WHERE id_servicio = :id_servicio");
+        $servicio->bindParam(':id_servicio', $id_servicio);
+        $servicio->execute();
+        $servicio_data = $servicio->fetch(PDO::FETCH_ASSOC);
+        $nombre_servicio = $servicio_data ? $servicio_data['nombre'] : 'Servicio no encontrado';
+        
+        $negocio_data = get_id_negocio($conexion, $id_servicio);
+        if ($negocio_data) {
+            $id_negocio = $negocio_data['id_negocio'];
+            $negocio = $conexion->prepare("SELECT nombre FROM negocios WHERE id_negocio = :id_negocio");
+            $negocio->bindParam(':id_negocio', $id_negocio);
+            $negocio->execute();
+            $negocio_data = $negocio->fetch(PDO::FETCH_ASSOC);
+            $nombre_negocio = $negocio_data ? $negocio_data['nombre'] : 'Negocio no encontrado';
+        } else {
+            $nombre_negocio = 'Negocio no encontrado';
+        }
+
     } else {
-        // No se encontró la cita
         $error_message = "No se encontró ninguna cita con ese código único.";
     }
 
     cerrar_conexion($conexion);
 } else {
     $error_message = "El código único es obligatorio.";
+}
+
+if (isset($_POST['eliminar_cita'])) {
+    $id_cita = $_POST['id_cita'];
+    if (deleteCita($conexion, $id_cita)) {
+        $mensajes = array("success", "Alta de usuario correcta.");
+    } else {
+        $mensajes = array("success", "Alta de usuario correcta.");
+    }
 }
 ?>
 
@@ -65,6 +95,7 @@ if (isset($_GET['codigo_unico'])) {
 <!--End Navbar-->
 
 <!--Hero Section -->
+<?= get_mensajes_html_format($mensajes); ?>
 <section class="hero-section">
     <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <?php if (isset($error_message)): ?>
@@ -85,8 +116,12 @@ if (isset($_GET['codigo_unico'])) {
             <table class="table table-bordered custom-table">
                 <tbody>
                     <tr>
+                        <td><strong>Negocio</strong></td>
+                        <td><?= htmlspecialchars($nombre_negocio); ?></td>
+                    </tr>
+                    <tr>
                         <td><strong>Tratamiento</strong></td>
-                        <td><?= htmlspecialchars($cita['id_servicio']); ?></td>
+                        <td><?= htmlspecialchars($nombre_servicio); ?></td>
                     </tr>
                     <tr>
                         <td><strong>Fecha</strong></td>
@@ -111,6 +146,13 @@ if (isset($_GET['codigo_unico'])) {
                 </tbody>
             </table>
         <?php endif; ?>
+        <div class="d-flex justify-content-between">
+            <a href="editarCita.php?codigo_unico=<?= htmlspecialchars($cita['codigo_unico']); ?>" class="btn btn-warning">Editar</a>
+            <form method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">
+                <input type="hidden" name="id_cita" value="<?= htmlspecialchars($cita['id']); ?>">
+                <button type="submit" name="eliminar_cita" class="btn btn-danger">Eliminar</button>
+            </form>
+        </div>
     </div>
 </section>
 <!--End Detalles de la cita -->

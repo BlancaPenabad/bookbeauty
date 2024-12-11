@@ -237,7 +237,7 @@ if (isset($_POST['delete_cita_id'])) {
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <form id="editServicioForm" method="POST" action="editarServicio.php">
+                                      <form id="formulario" method="POST" action="editarServicio.php">
                                         <input type="hidden" id="editServicioId" name="id_servicio">
                                         <div class="mb-3">
                                           <label for="editNombre" class="form-label">Nombre</label>
@@ -350,7 +350,7 @@ if (isset($_POST['delete_cita_id'])) {
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <form id="editCitaForm" action="editarCita.php" method="POST">
+            <form id="formulario" action="editarCita.php" method="POST">
               <input type="hidden" id="editCitaId" name="id_cita">
               <div class="mb-3">
                   <label for="editCitaServicio" class="form-label">Servicio</label>

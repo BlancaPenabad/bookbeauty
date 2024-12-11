@@ -231,7 +231,7 @@ footer{
 
 
  /* Formulario Login */
-form{
+#form{
     font-size: 1em;
     font-weight: 200;
     color: steelblue;
@@ -899,4 +899,8 @@ form{
     color: #333;
 }
 
+
+#formulario{
+    color: #1f1f1f;
+}
 
