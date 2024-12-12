@@ -17,5 +17,6 @@ O usuario cliente só vai poder consultar, editar e eliminar as súas citas así
 ## Deseño de interface de usuarios [mockups ou diagramas...].
 
 ## Diagrama de Base de Datos.
+![Diagrama de Base de Datos](../img/diagramaBD.png)
 
 ## Diagrama de compoñentes software que constitúen o produto e de despregue.
