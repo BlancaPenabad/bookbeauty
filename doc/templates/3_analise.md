@@ -1,10 +1,10 @@
 # ANÁLISE: Requirimentos do sistema
 
-Este documento describe os requerimientos de **Xestor de Citas**, especificando que funcionalidades ofrecerá e de qué xeito.
+Este documento describe os requerimientos do xestor de citas **BookBeauty**, especificando que funcionalidades ofrecerá e de qué xeito.
 
 ## Descrición xeral do proxecto
 
-O proxecto está enfocado en desenvolver unha **aplicación web de xestión de citas** orientada a negocios do sector da estética/beleza (salóns de beleza, centros de medicina estética, dentistas, perruquerías) e centrarase na xestión de citas para distintos servizos relacionados. O obxectivo é establecer unha xestión eficiente das citas tanto para os clientes como os administradores dos negocios.
+O proxecto está enfocado en desenvolver unha **aplicación web de xestión de citas** chamada BookBeauty, orientada a negocios do sector da estética/beleza (salóns de beleza, centros de medicina estética, dentistas, perruquerías) e centrarase na xestión de citas para distintos servizos relacionados. O obxectivo é establecer unha xestión eficiente das citas tanto para os clientes como os administradores dos negocios.
 
 ## Enumeración e descrición de cada unha das funcionalidades
 

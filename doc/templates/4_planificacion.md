@@ -1,116 +1,51 @@
-# FASE DE PLANIFICACIÓN DO PROXECTO
+# FASE DE PLANIFICACIÓN DO PROXECTO "BookBeauty"
 
 ## Obxectivos do proxecto
+O obxectivo principal da aplicación é permitir que tanto os administradores dos negocios coma os clientes poidan acceder e xestionar eficazmente as citas segundo os servizos ofertados e duración dos mesmos, así como consultar as datas dispoñibles.
 
-## Guía de planificación do proxecto
+### Calendario:
 
-### Metodoloxía
+O proxecto lévase a cabo desde  o 24 de setembro, día da primeira reunión informativa sobre a FCT e os proxectos de fin de ciclo onde comezo co estudo preliminar, ata o 15 de decembro ,data límite para a entrega do proxecto.
 
+#### Fase 1: Estudo preliminar
 
-### Fases planificadas
+- Data de inicio: 24 de setembro.
+- Data de término: 10 de outubro.
+- Duración estimada: 2 semanas
 
-Descríbense as fases en que se divide o proxecto e as tarefas que se han levar a cabo en cada unha destas fases.
-Pódense indicar os recursos materiais e humanos asociados a cada tarefa ou, se son os mesmos, de maneira máis xeral.
+Durante esta fase, depois de idear como estará enfocado o meu proxecto, realizarase unha análise das necesidades do mesmo, competencia existente así como funcionalidades a mellorar para destacar o proxecto sobre a competencia.
 
-#### Fase 1: Estudo de necesidades e modelo de negocio
+Durante o estudo tamén se exprorarán diferentes tipos de tecnoloxías, incluíndo linguaxes de programación e sistemas xestores de Bases de Datos. Finalmente decidín empregar como linguaxe PHP e unha base de datos relacional SQL, debido á facilidade, familiaridade de uso e compatibilidade co obxectivo do proxecto. 
 
-##### Tarefa 1: xxxxxxxx
+Nesta fase tamén foi elaborado o anteproxecto, onde se presenta cómo será (a grandes rasgos e sin profundizar moito) o proxecto a levar a cabo.
 
-Descrición: 
+#### Fase 2: Análise
 
-Recursos hardware/software: 
+- Data de inicio: 10 de outubro
+- Data de término: 20 de outubro
+- Duración estimada: 10 días
 
-Recursos humanos: Persoas que se encargarán de realizar esta tarefa
+Durante esta etapa, mirarei moi de cerca as necesidades do noso sistema, funcionalidades importantes a implementar e cómo organizarei a aplicación. Valorarei en detalle as necesidades do público en canto á funcionalidade da aplicación e como organizala para que funcione de xeito eficiente. 
 
-Duración: 
+#### Fase 3: Diseño
 
-#### Tarefa 2
-...
+- Data de inicio: 20 de outubro
+- Data de término: 29 de outubro 
+- Duración estimada: 1o días
 
-#### Fase 2: xxxxx
-
-##### Tarefa 1: xxxxxxxx
-
-Descrición: 
-
-Recursos hardware/software: 
-
-Recursos humanos: 
-
-Duración: 
-
-#### Tarefa 2
-...
-
-### Diagrama de Gantt
-Un diagrama de Gantt é unha representación gráfica da secuenciación que tes que seguir para realizar as tarefas planificadas. Pódese usar o software "Gantt project" ou calquera outro que permita representar nun cronograma a información relativa á planificación de tarefas. 
-
-## Orzamento
-O orzamento do proxecto será a suma do importe dos materiais que necesites para realizar o proxecto máis o importe que corresponde ao traballo realizado. 
-O importe relacionado co traballo no proxecto é relativamente fácil de obter se se elaboraron ben as etapas anteriores: definir as actividades necesarias e os recursos propios de cada actividade. Neste caso disporase dun custo por cada actividade e a suma do custo de todas as actividades será o custo total do traballo do proxecto. 
-Para establecer os custos do proxecto debes ter en conta diferentes conceptos: 
-- Materiais que se utilizan: material funxible, materias primas, materiais didácticos, roupa de traballo… 
-- Custo horario das persoas que participan directamente na actividade. 
-- Aluguer/compra de ferramentas, maquinaria, equipos informáticos e/ou audiovisuais… 
-- Aluguer/compra de locais 
-- Contratos de subministracións: auga, luz, electricidade, gas… Subcontrataciones 
-- Gastos de publicidade… 
-- Seguros ... 
-
-O maior custo no proxecto case sempre corresponde ás persoas, polo que é importante controlar o número de horas que se invisten en cada actividade para que non se nos desequilibre o orzamento. Tamén hai que coidar as subcontratacións; convén que traballen cun orzamento establecido.
- A continuación preséntanse dúas opción de táboa para facilitar a creación do orzamento do proxecto:
-
-### Orzamento por actividade
-
-| ACTIVIDADE | DURACIÓN | CUSTO (EUROS) | | CUSTO TOTAL ACTIVIDADE |
-|--|--|--|--|--|
-|            |          | PERSOAS|RECURSOS MATERIAIS|
-|||||
-|||||
-|||||
-|||||
-
-| TOTAL | PROXECTO | 
-| -- | -- |
-
-### Orzamento por partidas de inversión / gasto:
-
-| CONCEPTO | IMPORTE|
-|--|--|
-|**A) INVERSIONS**
-|Gastos de establecemento e gastos de constitución
-|Total inmobilizacións inmateriais
-|Terreos
-|Construcións
-|Instalacións técnicas
-|Maquinaria
-|Ferramentas
-|Mobiliario e instalacións
-|Equipos informáticos
-|Elementos de transporte
-|Outro inmobilizado material
-|Total inmobilizacións materiais
-|Outros gastos a distribuír en varios exercicios
-|**TOTAL INVERSIÓNS:**
-|**B) GASTOS**
-|Compras de materiais
-|Arrendamentos
-|Publicidade, propaganda e relacións públicas
-|Persoal
-|Reparacións e conservación
-|Servizos de profesionais independentes
-|Outros gastos xerais
-|Gastos financeiros
-|Amortizacións
-|Gastos de xestión e administración
-|**TOTAL GASTOS:**
-
-|TOTAL ORZAMENTO:
-|--|
-
-### WEBGRAFÍA
-Guía para a elaboración de proyectos. Gobierno Vasco.
-https://www.pluralismoyconvivencia.es/upload/19/71/guia_elaboracion_proyectos_c.pdf  (páxina 49 e seguintes)
+Durante esta  fase elaboraranse os deseños da interface de usuario (HTML, CSS e Bootstap), o esquema e organización da base de datos e a arquitectura xeral da aplicación.
 
 
+#### Fase 4: Codificación e probas
+
+- Data de inicio:  29 de outubro
+- Data de término: 30 de outubro
+- Duración estimada: 1 mes
+
+Nesta etapa, empezarase a escribir o código da aplicación segundo as ideas e esquemas establecidos anteriormente. De atoparse con algunha dificultade, seguirase aprendendo e formando nas linguaxes de programación e tecnoloxías elexidas. Ao mesmo tempo que se desenvolve o código, faránse probas para asegurarse de que o software funcione ben e sexa de calidade.
+
+#### Data de presentación do proxecto:
+
+- Data de entrega do proxecto: 15 de decembro. Esta data representa o término do proxecto e a entrega de todos os documentos, manuais e da aplicación finalizada.
+- Data de término xeral: 18/19 de decembro, días nos que se levará a cabo a presentación do proxecto ante tribunal.
 
