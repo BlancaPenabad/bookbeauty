@@ -68,10 +68,10 @@ if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['
 <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="index.php">GESTOR <b>CITAS</b></a>
+      <a class="navbar-brand me-auto" href="index.php">Book<b>Beauty</b></a>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">GESTOR CITAS</h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookBeauty</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
       </div>
@@ -88,7 +88,7 @@ if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['
 <section class="hero-section">
     <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
     <?= get_mensajes_html_format($mensajes); ?>
-        <h1>Tu cita en <?=htmlspecialchars($nombre_negocio);?> ha sido confirmada  <?=htmlspecialchars($nombre_cliente);?>  ¡Gracias por reservar con GestorCitas!</h1>
+        <h1>Tu cita en <?=htmlspecialchars($nombre_negocio);?> ha sido confirmada  <?=htmlspecialchars($nombre_cliente);?>  ¡Gracias por reservar con BookBeauty!</h1>
     </div>
     <div class="contenedor-tabla">
             <h2>Detalles de tu cita</h2>

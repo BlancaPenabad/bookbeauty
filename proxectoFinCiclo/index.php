@@ -25,7 +25,7 @@ $negocios = nombres_negocios($conexion);
 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gestor Citas</title>
+    <title>BookBeauty</title>
 <!--Bootstrap CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -39,10 +39,10 @@ $negocios = nombres_negocios($conexion);
 <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="#">GESTOR <b>CITAS</b></a>
+      <a class="navbar-brand me-auto" href="#">Book<b>Beauty</b></a>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">GESTOR CITAS</h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookBeauty</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
@@ -79,7 +79,7 @@ $negocios = nombres_negocios($conexion);
   <div class="containerII">
     <section class="cero" id="home">
       <div class="textoHome">
-        <h1>GESTOR CITAS - Reserva servicios de belleza y bienestar</h1>
+        <h1>BookBeauty - Reserva servicios de belleza y bienestar</h1>
         <p>Reserva servicios de belleza y bienestar en Santiago de Compostela</p>
         <a href="#sobrenosotros" class="home-btn">Saber más</a>
       </div>
@@ -230,7 +230,7 @@ $negocios = nombres_negocios($conexion);
           <div class="box">
             <div class="icon"><i class="fa-solid fa-envelope"></i></div>
               <div class="text">
-                <h3>Envíanos un email a <a href="mailto:optiprize@optiprize.com">GESTORCITAS@GESTORCITAS.com</a></h3>
+                <h3>Envíanos un email a <a href="mailto:bookbeauty@bookbeauty.com">bookbeauty@bookbeauty.com</a></h3>
               </div>
           </div>
           <div class="box">

@@ -108,7 +108,7 @@ if (isset($_POST['delete_cita_id'])) {
 <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="#">GESTOR <b>CITAS</b></a>
+      <a class="navbar-brand me-auto" href="#">Book<b>Beauty</b></a>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">DASHBOARD CITAS</h5>

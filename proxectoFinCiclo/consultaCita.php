@@ -78,10 +78,10 @@ if (isset($_POST['eliminar_cita'])) {
 <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="index.php">GESTOR <b>CITAS</b></a>
+      <a class="navbar-brand me-auto" href="index.php">Book<b>Beauty</b></a>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">GESTOR CITAS</h5>
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BookBeauty</h5>
           <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
       </div>

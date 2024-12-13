@@ -1,7 +1,7 @@
 # FASE DE DESEÑO
 
 ## Modelo conceptual do dominio da aplicación e/ou Diagrama de clases [usando UML, ConML, ou linguaxe semellante].
-![Diagrama de clases](../img/diagramaClases.png)
+![Diagrama de clases](doc/img/diagramaClases.png)
 
 ## Casos de uso
 Nos casos de uso temos ao usuario cliente, o cal non require de identificación, e o usuario administrador que si ten que identificarse.
@@ -9,14 +9,14 @@ Nos casos de uso temos ao usuario cliente, o cal non require de identificación,
 O usuario cliente só vai poder consultar, editar e eliminar as súas citas así como axendar outras novas, mentres que o administrador vai ser capaz de crear, editar e eliminar citas e servizos ofertados.
 
 ### a) Casos de usuario cliente anónimo:
-![Casos de uso cliente](../img/casosUso.png)
+![Casos de uso cliente](doc/img/casosUso.png)
 
 ### b) Casos de usuario administrador:
-![Casos de uso administrador](../img/casosUso2.png)
+![Casos de uso administrador](doc/img/casosUso2.png)
 
 ## Deseño de interface de usuarios [mockups ou diagramas...].
 
 ## Diagrama de Base de Datos.
-![Diagrama de Base de Datos](../img/diagramaBD.png)
+![Diagrama de Base de Datos](doc/img/diagramaBD.png)
 
 ## Diagrama de compoñentes software que constitúen o produto e de despregue.
