@@ -128,7 +128,7 @@ if (isset($_GET['id_servicio'], $_GET['fecha'], $_GET['nombre_cliente'], $_GET['
 <!-- Footer -->
 <footer>
   <div class="footerBottom">
-      <p><small>Copyright &copy;2024; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
+      <p><small>Copyright &copy;2025; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
     </div>
 </footer>
 <!-- End Footer -->

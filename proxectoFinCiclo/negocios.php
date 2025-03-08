@@ -93,7 +93,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 <header>
   <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container-fluid">
-      <a class="navbar-brand me-auto" href="#">Book<b>Beauty</b></a>
+      <a class="navbar-brand me-auto" href="index.php">Book<b>Beauty</b></a>
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
         <div class="offcanvas-header">
           <h5 class="offcanvas-title" id="offcanvasNavbarLabel">DASHBOARD CITAS</h5>
@@ -110,6 +110,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="#reservas">RESERVA TU CITA</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link mx-lg-2" href="#contacto">CONTACTO</a>
             </li>
           </ul>
         </div>
@@ -129,17 +132,16 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <section class="ceroI" id="home" style="background: linear-gradient(rgba(4,9,30,0.3), rgba(4,9,30,0.3)), url('lib/images/<?= htmlspecialchars($foto_negocio); ?>') no-repeat center;  min-height: 100vh; background-size: cover; width: 100%; position: relative; padding-top: 20vh; padding-bottom: 10vh; flex: 1;">
       <div class="textoHome">
         <h1><?= htmlspecialchars($nombre_negocio); ?></h1>
-        <p>La manera más fácil de reservar belleza</p>
         <a href="#servicios" class="home-btn">Ver servicios</a>
         <a href="#reservas" class="home-btn">Reserva tu cita</a>
       </div>
     </section>
     <section class="uno"  id="miNegocio">
-        <h2>Negocio: <?= htmlspecialchars($nombre_negocio); ?></h2>
+        <h2><?= htmlspecialchars($nombre_negocio); ?></h2>
         <div class="accordion">
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Teléfono</h3>
+              <h3>¿Quienes somos?</h3>
             </div>
             <div class="accordion-content">
               <p><?= htmlspecialchars($telefono_negocio); ?></p>
@@ -166,7 +168,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     <section class="dos"  id="servicios">
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <div id="reserva" class="reserva-container">
-        <h2>Servicios de <?= htmlspecialchars($nombre_negocio); ?></h2>
+        <h2>Nuestros servicios</h2>
         <div class="container">
         <?php if ($servicios && count($servicios) > 0): ?>
           <div class="table-responsive">
@@ -240,6 +242,40 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         </div>
     </div>
     </section>
+    <section class="cinco"  id="contacto">
+      <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
+        <h2>¡Contacta con nosotros!</h2>
+        <div class="contactInfo">
+          <div class="box">
+            <div class="icon"><i class="fa-solid fa-map-pin"></i></div>
+              <div class="text">
+                <h3>Visítenos y hablemos</h3>
+                <p>Puedes pasarte por nuestras instalaciones en <?= htmlspecialchars($direccion_negocio); ?> y te informaremos de todos los servicios que disponemos.</p>
+              </div>
+          </div>
+          <div class="box">
+            <div class="icon"><i class="fa-solid fa-phone"></i></div>
+              <div class="text">
+                <h3>Llámanos</h3>
+                <p>Ponte en contacto con nosotros llamando al <?= htmlspecialchars($telefono_negocio); ?></p>
+              </div>
+          </div>
+          <div class="box">
+            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+              <div class="text">
+                <h3>Envíanos un email a <a href="mailto:bookbeauty@bookbeauty.com">bookbeauty@bookbeauty.com</a></h3>
+              </div>
+          </div>
+          <div class="box">
+            <div class="icon"><i class="fa-brands fa-instagram"></i></div>
+              <div class="text">
+                <h3>Síguenos en instagram y no te pierdas las últimas novedades</h3>
+              </div>
+          </div>
+        </div>
+        </div>
+    </div>
+    </section>
     </section>
     
   </div>
@@ -248,6 +284,30 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
   </a>
 </main>
 <!--End Main -->
+<!-- Footer -->
+<footer>
+  <div class="footerContainer">
+    <div class="socialMediaIcons">
+      <a href=""><i class="fa-brands fa-facebook"></i></a>
+      <a href=""><i class="fa-brands fa-instagram"></i></a>
+      <a href=""><i class="fa-brands fa-linkedin"></i></a>
+      <a href=""><i class="fa-brands fa-twitter"></i></a>
+    </div>
+    <div class="footerNav">
+      <ul>
+        <li><a href="#miNegocio">Quienes somos</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#reservas">Reserva</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footerBottom">
+      <p><small>Copyright &copy;2025; Diseñado por <span class="designer">Blanca Penabad Villar</span></small></p>
+    </div>
+</footer>
+<?php cerrar_conexion($conexion);?>
+
+<!-- End Footer -->
 <script>
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {

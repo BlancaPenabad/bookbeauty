@@ -59,9 +59,6 @@ $negocios = nombres_negocios($conexion);
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="#opcionesI">OPCIONES</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#contacto">CONTACTO</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -209,41 +206,7 @@ $negocios = nombres_negocios($conexion);
         </section>
     </section>
     </section>
-    <section class="cinco"  id="contacto">
-      <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
-        <h2>¡Contacta con nosotros!</h2>
-        <div class="contactInfo">
-          <div class="box">
-            <div class="icon"><i class="fa-solid fa-map-pin"></i></div>
-              <div class="text">
-                <h3>Visítenos y hablemos</h3>
-                <p>Puedes pasarte por nuestras instalaciones en Polígono Costa Vella, Rúa da República Checa, 23-25, 15707 Santiago de Compostela, La Coruña y te informaremos de todos los servicios que disponemos.</p>
-              </div>
-          </div>
-          <div class="box">
-            <div class="icon"><i class="fa-solid fa-phone"></i></div>
-              <div class="text">
-                <h3>Llámanos</h3>
-                <p>Ponte en contacto con nosotros llamando al (+34) 999 888 777</p>
-              </div>
-          </div>
-          <div class="box">
-            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-              <div class="text">
-                <h3>Envíanos un email a <a href="mailto:bookbeauty@bookbeauty.com">bookbeauty@bookbeauty.com</a></h3>
-              </div>
-          </div>
-          <div class="box">
-            <div class="icon"><i class="fa-brands fa-instagram"></i></div>
-              <div class="text">
-                <h3>Síguenos en instagram y no te pierdas las últimas novedades</h3>
-              </div>
-          </div>
-        </div>
-        </div>
     </div>
-    </section>
-  </div>
   <a href="#" class="to-top">
     <i class="fa-solid fa-chevron-up"></i>
   </a>
@@ -252,25 +215,8 @@ $negocios = nombres_negocios($conexion);
 
 <!-- Footer -->
 <footer>
-  <div class="footerContainer">
-    <div class="socialMediaIcons">
-      <a href=""><i class="fa-brands fa-facebook"></i></a>
-      <a href=""><i class="fa-brands fa-instagram"></i></a>
-      <a href=""><i class="fa-brands fa-linkedin"></i></a>
-      <a href=""><i class="fa-brands fa-twitter"></i></a>
-    </div>
-    <div class="footerNav">
-      <ul>
-        <li><a href="#sobrenosotros">Negocios</a></li>
-        <li><a href="#beneficios">Beneficios</a></li>
-        <li><a href="#reserva">Consulta tu cita</a></li>
-        <li><a href="#opciones">Opciones</a></li>
-        <li><a href="#contacto">Contacto</a></li>
-      </ul>
-    </div>
-  </div>
   <div class="footerBottom">
-      <p><small>Copyright &copy;2024; Diseñado por <span class="designer">Blanca Penabad Villar</span></small></p>
+      <p><small>Copyright &copy;2025; Diseñado por <span class="designer">Blanca Penabad Villar</span></small></p>
     </div>
 </footer>
 <?php cerrar_conexion($conexion);?>

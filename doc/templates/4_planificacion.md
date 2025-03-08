@@ -5,7 +5,7 @@ O obxectivo principal da aplicación é permitir que tanto os administradores do
 
 ### Calendario:
 
-O proxecto lévase a cabo desde  o 24 de setembro, día da primeira reunión informativa sobre a FCT e os proxectos de fin de ciclo onde comezo co estudo preliminar, ata o 15 de decembro ,data límite para a entrega do proxecto.
+O proxecto lévase a cabo desde  o 24 de setembro, día da primeira reunión informativa sobre a FCT e os proxectos de fin de ciclo onde comezo co estudo preliminar, ata o 16 de marzo, data límite para a entrega do proxecto. O proxecto, que estaba suposto a ser rematado e presentado na primeira convocatoria de decembro, finalmente tivo que aprazarse ata a segunda convocatoria de marzo por motivos persoais.
 
 #### Fase 1: Estudo preliminar
 
@@ -31,7 +31,7 @@ Durante esta etapa, mirarei moi de cerca as necesidades do noso sistema, funcion
 
 - Data de inicio: 20 de outubro
 - Data de término: 29 de outubro 
-- Duración estimada: 1o días
+- Duración estimada: 10 días
 
 Durante esta  fase elaboraranse os deseños da interface de usuario (HTML, CSS e Bootstap), o esquema e organización da base de datos e a arquitectura xeral da aplicación.
 
@@ -47,15 +47,15 @@ Nesta etapa, empezarase a escribir o código da aplicación segundo as ideas e e
 #### Fase 5: Documentación
 
 - Data de inicio:  30 de novembro
-- Data de término: 15 de decembro
-- Duración estimada: 15 días
+- Data de término: 16 de marzo
+- Duración estimada: 40 días
 
-Nesta etapa final, completaránse aqueles aspectos da documentació nque quedaban sen responder, elaboraránse os esquemas e diagramas e detallarase a planificación de todo o proxecto.
+Nesta etapa final, a cal extendeuse ata a convocatoria do segundo trimestre, completaránse aqueles aspectos da documentación que quedaban sen responder, ultimaránse partes da codificación que estaban pendentes, elaboraránse os esquemas e diagramas e detallarase a planificación de todo o proxecto.
 
 #### Data de presentación do proxecto:
 
-- Data de entrega do proxecto: 15 de decembro. Esta data representa o término do proxecto e a entrega de todos os documentos, manuais e da aplicación finalizada.
-- Data de término xeral: 18/19 de decembro, días nos que se levará a cabo a presentación do proxecto ante tribunal.
+- Data de entrega do proxecto: 16 de marzo. Esta data representa o término do proxecto e a entrega de todos os documentos, manuais e da aplicación finalizada.
+- Data de término xeral: 20 de marzo, días nos que se levará a cabo a presentación do proxecto ante tribunal.
 
 
 ### Diagrama de Gantt

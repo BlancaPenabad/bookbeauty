@@ -160,7 +160,7 @@ if (isset($_POST['eliminar_cita'])) {
 <!-- Footer -->
 <footer>
   <div class="footerBottom">
-      <p><small>Copyright &copy;2024; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
+      <p><small>Copyright &copy;2025; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
   </div>
 </footer>
 <!-- End Footer -->
