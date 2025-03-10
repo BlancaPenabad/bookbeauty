@@ -14,7 +14,14 @@ O usuario cliente só vai poder consultar, editar e eliminar as súas citas así
 ### b) Casos de usuario administrador:
 ![Casos de uso administrador](../img/casosUso2.PNG)
 
-## Deseño de interface de usuarios [mockups ou diagramas...].
+## Deseño de interface de usuarios: Diagramas de navegación e mockups.
+
+### a) Usuario cliente anónimo:
+![Usuario: ](../img/mockupUser.PNG)
+
+### b) Usuario administrador:
+![Administrador: ](../img/mockupAdmin.PNG)
+
 
 ## Diagrama de Base de Datos.
 ![Diagrama de Base de Datos](../img/diagramaBD.PNG)

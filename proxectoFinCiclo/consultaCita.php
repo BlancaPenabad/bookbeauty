@@ -147,7 +147,7 @@ if (isset($_POST['eliminar_cita'])) {
             </table>
         <?php endif; ?>
         <div class="d-flex justify-content-between">
-            <a href="editarCita.php?codigo_unico=<?= htmlspecialchars($cita['codigo_unico']); ?>" class="btn btn-warning">Editar</a>
+            <a href="#" class="btn btn-warning" id="editConsultaCitaBtn" data-bs-toggle="modal" data-bs-target="#editConsultaCitaModal">Editar</a>
             <form method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">
                 <input type="hidden" name="id_cita" value="<?= htmlspecialchars($cita['id']); ?>">
                 <button type="submit" name="eliminar_cita" class="btn btn-danger">Eliminar</button>
@@ -165,8 +165,73 @@ if (isset($_POST['eliminar_cita'])) {
 </footer>
 <!-- End Footer -->
 
+<!-- Modal para editar Cita -->
+<div class="modal fade" id="editConsultaCitaModal" tabindex="-1" aria-labelledby="editConsultaCitaModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editConsultaCitaModalLabel">Editar Cita</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="formulario-editar-cita" action="validarCita.php" method="POST">
+                    <input type="hidden" id="editCitaId" name="id_cita">
+                    <div class="mb-3">
+                        <label for="editCitaServicio" class="form-label">Servicio</label>
+                        <select class="form-control" id="editCitaServicio" name="id_servicio" required>
+                            <option value="">Seleccione un servicio</option>
+                            <?php
+                            $servicios = datos_servicios($conexion, $id_administrador);
+                            foreach ($servicios as $servicio) {
+                                echo "<option value='" . $servicio['id_servicio'] . "'>" . htmlspecialchars($servicio['nombre']) . "</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCitaFecha" class="form-label">Fecha</label>
+                        <input type="datetime-local" class="form-control" id="editCitaFecha" name="fecha" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCitaCliente" class="form-label">Cliente</label>
+                        <input type="text" class="form-control" id="editCitaCliente" name="cliente" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCitaTelefono" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="editCitaTelefono" name="telefono" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="editCitaEmail" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="editCitaEmail" name="email" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!--Bootstrap JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
+<script>
+    document.getElementById('editConsultaCitaBtn').addEventListener('click', function() {
+        // Obtener los datos de la cita
+        var citaId = '<?= $cita["id"]; ?>';
+        var servicio = '<?= $nombre_servicio; ?>';
+        var fecha = '<?= $cita["fecha"]; ?>';
+        var cliente = '<?= $cita["nombre_cliente"]; ?>';
+        var telefono = '<?= $cita["tlf_cliente"]; ?>';
+        var email = '<?= $cita["email_cliente"]; ?>';
+
+        // Rellenar el modal con los datos de la cita
+        document.getElementById('editCitaId').value = citaId;
+        document.getElementById('editCitaServicio').value = servicio;
+        document.getElementById('editCitaFecha').value = fecha;
+        document.getElementById('editCitaCliente').value = cliente;
+        document.getElementById('editCitaTelefono').value = telefono;
+        document.getElementById('editCitaEmail').value = email;
+    });
+</script>
 </body>
 </html>
