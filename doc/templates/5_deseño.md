@@ -18,6 +18,8 @@ O usuario cliente só vai poder consultar, editar e eliminar as súas citas así
 
 ### a) Usuario cliente anónimo:
 ![Usuario: ](../img/mockupUser.PNG)
+![Usuario: ](../img/mockupUserII.PNG)
+
 
 ### b) Usuario administrador:
 ![Administrador: ](../img/mockupAdmin.PNG)
