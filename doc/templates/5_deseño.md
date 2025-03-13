@@ -1,6 +1,6 @@
 # FASE DE DESEÑO
 
-## Modelo conceptual do dominio da aplicación e/ou Diagrama de clases [usando UML, ConML, ou linguaxe semellante].
+##  Diagrama de clases UML
 ![Diagrama de clases](../img/diagramaClases.PNG)
 
 ## Casos de uso
