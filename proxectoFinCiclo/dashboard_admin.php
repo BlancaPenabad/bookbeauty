@@ -67,7 +67,6 @@ if (isset($_POST['delete_cita_id'])) {
     } else {
       echo "<script>alert('Hubo un error al eliminar la cita');</script>";
     }
-    // Redirigir después de eliminar
     header("Location: dashboard_admin.php");
     exit();
   }
@@ -237,7 +236,7 @@ if (isset($_POST['delete_cita_id'])) {
                                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                      <form id="formulario" method="POST" action="editarServicio.php">
+                                      <form id="formularioServicios" method="POST" action="editarServicio.php">
                                         <input type="hidden" id="editServicioId" name="id_servicio">
                                         <div class="mb-3">
                                           <label for="editNombre" class="form-label">Nombre</label>
@@ -311,7 +310,7 @@ if (isset($_POST['delete_cita_id'])) {
     </div>
         </section>
         -->
-    <!-- Modal para editar SERVICIOS -->
+    <!-- Modal para ver CITAS -->
     <div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -353,9 +352,9 @@ if (isset($_POST['delete_cita_id'])) {
             <form id="formulario" action="editarCita.php" method="POST">
               <input type="hidden" id="editCitaId" name="id_cita">
               <div class="mb-3">
-                  <label for="editCitaServicio" class="form-label">Servicio</label>
+                  <label for="editCitaServicio" class="form-label">Servicios:</label>
                   <select class="form-control" id="editCitaServicio" name="id_servicio" required>
-                      <option value="">Seleccione un servicio</option>
+                      <option value=""disabled selected>Seleccione un servicio</option>
                       <?php
                       $servicios = datos_servicios($conexion, $id_administrador);
                       foreach ($servicios as $servicio) {
@@ -387,7 +386,7 @@ if (isset($_POST['delete_cita_id'])) {
       </div>
     </div>
     </section>
-    </section>
+  </section>
     
   </div>
   <a href="#" class="to-top">
@@ -448,6 +447,80 @@ if (isset($_POST['delete_cita_id'])) {
 </script>
 <script>  var eventos = <?php echo json_encode($eventos); ?>; </script>
 <script src='js/custom.js'></script>
+<script>
+   document.addEventListener("DOMContentLoaded", function() {
+    let formulario = document.getElementById("formulario");
+
+    formulario.addEventListener("submit", function(event) {
+        event.preventDefault();
+        let errores = [];
+
+        let idServicio = document.getElementById("editCitaServicio");
+        let fecha = document.getElementById("editCitaFecha");
+        let cliente = document.getElementById("editCitaCliente");
+        let telefono = document.getElementById("editCitaTelefono");
+        let email = document.getElementById("editCitaEmail");
+
+        let idServicioValor = idServicio.value.trim();
+        let fechaValor = fecha.value.trim();
+        let clienteValor = cliente.value.trim();
+        let telefonoValor = telefono.value.trim();
+        let emailValor = email.value.trim();
+
+        let patronNombre = /^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{1,50}$/;
+        let patronTlf = /^\d{9,15}$/;
+        let patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        document.querySelectorAll(".is-invalid").forEach(el => el.classList.remove("is-invalid"));
+
+        if (idServicioValor === "") {
+            errores.push("Debe seleccionar un servicio.");
+            idServicio.classList.add("is-invalid");
+        }
+
+        if (fechaValor === "") {
+            errores.push("Debe ingresar una fecha válida.");
+            fecha.classList.add("is-invalid");
+        }
+
+        if (!patronNombre.test(clienteValor)) {
+            errores.push("Nombre inválido. Solo letras y máximo 50 caracteres.");
+            cliente.classList.add("is-invalid");
+        }
+
+        if (!patronTlf.test(telefonoValor)) {
+            errores.push("Teléfono inválido. Debe tener entre 9 y 15 dígitos numéricos.");
+            telefono.classList.add("is-invalid");
+        }
+
+        if (emailValor !== "" && !patronEmail.test(emailValor)) {
+            errores.push("Correo electrónico inválido.");
+            email.classList.add("is-invalid");
+        }
+
+        if (errores.length > 0) {
+            alert(errores.join("\n"));
+            return;
+        }
+
+        let formData = new FormData(formulario);
+        fetch("editarCita.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.mensajes.join("\n"));
+            } else {
+                alert("Cita actualizada con éxito.");
+                location.reload();
+            }
+        })
+        .catch(error => console.error("Error en la petición:", error));
+    });
+});
+</script>
 
     <?php cerrar_conexion($conexion);?>
 </body>

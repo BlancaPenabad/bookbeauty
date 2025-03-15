@@ -27,7 +27,55 @@ if($negocio == null){
   $foto_negocio = $negocio['foto_negocio'];
 }
 
+/* VALIDACIONES */
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if (!empty($_POST['opcionSelect']) && is_numeric($_POST['opcionSelect'])) {
+      $id_servicio = $_POST['opcionSelect'];
+  } else {
+      $mensajes[] = array("error", "Selecciona un servicio válido.");
+  }
 
+  if (!empty($_POST['fecha']) && !empty($_POST['hora'])) {
+      $fecha = $_POST['fecha'] . ' ' . $_POST['hora'];
+  } else {
+      $mensajes[] = array("error", "Selecciona una fecha y hora válidas.");
+  }
+
+  if (!empty($_POST['nombre']) && is_string($_POST['nombre']) && strlen($_POST['nombre']) <= 255) {
+      $nombre_cliente = htmlspecialchars($_POST['nombre']);
+  } else {
+      $mensajes[] = array("error", "Introduce un nombre válido (máx. 255 caracteres).");
+  }
+
+  if (!empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && strlen($_POST['email']) <= 255) {
+      $email_cliente = htmlspecialchars($_POST['email']);
+  } else {
+      $mensajes[] = array("error", "Introduce un email válido (máx. 255 caracteres).");
+  }
+
+  if (!empty($_POST['tlf']) && is_numeric($_POST['tlf'])) {
+      $tlf_cliente = $_POST['tlf'];
+  } else {
+      $mensajes[] = array("error", "Introduce un número de teléfono válido (máx. 9 dígitos).");
+  }
+
+  if (empty($mensajes)) {
+      $codigo_unico = 'CITA' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
+
+      $resultado = addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_cliente, $tlf_cliente, $codigo_unico);
+
+      if ($resultado) {
+          $mensajes[] = array("success", "Tu cita se ha registrado correctamente. ¡Gracias!");
+
+          enviarCorreoConfirmacion($email_cliente, $nombre_cliente, $nombre_negocio, $fecha, $codigo_unico);
+
+          header('Location: cita_confirmada.php?id_servicio=' . urlencode($id_servicio) . '&fecha=' . urlencode($fecha) . '&nombre_cliente=' . urlencode($nombre_cliente) . '&email_cliente=' . urlencode($email_cliente) . '&tlf_cliente=' . urlencode($tlf_cliente) . '&codigo_unico=' . urlencode($codigo_unico));
+          exit;
+      } else {
+          $mensajes[] = array("error", "Ha ocurrido un error al registrar tu cita.");
+      }
+  }
+}
 $citas_ocupadas = get_citas_negocio($conexion, $id_negocio);
 
 $horas_ocupadas = [];
@@ -42,29 +90,6 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
 
 
 
-if($_SERVER['REQUEST_METHOD'] === 'POST'){
-  $id_servicio = $_POST['opcionSelect'];
-  $fecha = $_POST['fecha'].' '.$_POST['hora'];
-  $nombre_cliente = $_POST['nombre'];
-  $email_cliente = $_POST['email'];
-  $tlf_cliente = $_POST['tlf'];
-
-  $codigo_unico = 'CITA' . str_pad(rand(0, 9999), 4, '0', STR_PAD_LEFT);
-  
-    $resultado = addCita($conexion, $id_servicio, $fecha, $nombre_cliente, $email_cliente, $tlf_cliente, $codigo_unico);
-
-    if ($resultado) {
-      $mensajes[] = array("success", "Tu cita se ha registrado correctamente. ¡Gracias!");
-
-      enviarCorreoConfirmacion($email_cliente, $nombre_cliente,$nombre_negocio, $fecha, $codigo_unico);
-
-      header('Location: cita_confirmada.php?id_servicio=' . urlencode($id_servicio) . '&fecha=' . urlencode($fecha) . '&nombre_cliente=' . urlencode($nombre_cliente) . '&email_cliente=' . urlencode($email_cliente) . '&tlf_cliente=' . urlencode($tlf_cliente) . '&codigo_unico=' . urlencode($codigo_unico));
-      exit;
-  } else {
-      $mensajes[] = array("error", "Ha ocurrido un error.");
-  }
-
-}
 
 
 
@@ -205,7 +230,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     </div>
     </section>
     <section class="tres"  id="reservas">
-    <?= get_mensajes_html_format($mensajes); ?>
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <h2 id="h2Reserva">Reserva tu cita en <b><?= htmlspecialchars($nombre_negocio); ?></b></h2>
         <h2>Rápido, sencillo y sin necesidad de darte de alta!</h2>
@@ -228,16 +252,18 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 ?>
               <label for="fecha">Fecha y hora:</label>
               <div class="fecha-hora-container">
-                <input type="text" id="fecha" name="fecha" required>
-                <input type="time" id="hora" name="hora" required>
+                <input type="text" class="form-control" id="fecha" name="fecha" required>
+                <input type="time" class="form-control" id="hora" name="hora" required>
               </div>
               <label for="nombre">Nombre:</label>
-              <input type="text" id="nombre" name="nombre" required>
+              <input type="text" class="form-control" id="nombre" name="nombre" required>
               <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <input type="email" class="form-control" id="email" name="email" required>
               <label for="tlf">Teléfono:</label>
-              <input type="text" id="tlf" name="tlf" required>
+              <input type="text" class="form-control" id="tlf" name="tlf" required>
               <button type="submit" name="submit" class="btn btn-primary">Reservar</button>
+              <?= get_mensajes_html_format($mensajes); ?>
+
           </form>
         </div>
     </div>
@@ -359,6 +385,60 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
     });
 
 </script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector(".reserva-form").addEventListener("submit", function(event) {
+        let errores = [];
+
+        let nombre = document.getElementById("nombre");
+        let email = document.getElementById("email");
+        let telefono = document.getElementById("tlf");
+
+        let nombreValor = nombre.value.trim();
+        let emailValor = email.value.trim();
+        let telefonoValor = telefono.value.trim();
+
+        let patronNombre = /^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]+$/;  
+        let patronTlf = /^[0-9\s]+$/;  
+        let patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+
+        // Validar nombre
+        if (!patronNombre.test(nombreValor)) {
+            errores.push("El nombre solo puede contener letras y espacios.");
+            nombre.classList.add("is-invalid");
+        } else {
+            nombre.classList.remove("is-invalid");
+        }
+
+        // Validar email
+        if (!patronEmail.test(emailValor)) {
+            errores.push("Introduce un email válido.");
+            email.classList.add("is-invalid");
+        } else {
+            email.classList.remove("is-invalid");
+        }
+
+        // Validar teléfono
+        let telefonoSinEspacios = telefonoValor.replace(/\s/g, ''); 
+        if (telefonoSinEspacios.length < 9) {
+            errores.push("El teléfono debe contener al menos 9 dígitos.");
+            telefono.classList.add("is-invalid");
+        } else if (!patronTlf.test(telefonoValor)) {
+            errores.push("El teléfono solo puede contener números y espacios.");
+            telefono.classList.add("is-invalid");
+        } else {
+            telefono.classList.remove("is-invalid");
+        }
+
+        if (errores.length > 0) {
+            event.preventDefault();  
+            alert(errores.join("\n")); 
+        }
+    });
+});
+</script>
+ <!--Bootstrap JS-->
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <?php cerrar_conexion($conexion);?>
 </body>
 </html>

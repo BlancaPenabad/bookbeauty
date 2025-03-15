@@ -232,7 +232,7 @@ footer{
 
  /* Formulario Login */
 #form{
-    font-size: 1em;
+    font-size: 0.7em;
     font-weight: 200;
     color: steelblue;
     background: linear-gradient(rgb(255, 255, 255), rgb(231, 107, 169));
@@ -256,6 +256,9 @@ footer{
     background-color: steelblue;
 }
 
+.mensaje {
+    font-size: 0.5em; 
+}
 
 /*RESERVAS*/
 
@@ -277,7 +280,7 @@ footer{
 
 }
 
-/* Estilos para el formulario */
+/* Estilos para el formulario de reservas*/
 .reserva-form {
     background: transparent;
     width: 100%; /* Hace que el formulario use todo el ancho del contenedor */
@@ -904,3 +907,6 @@ footer{
     color: #1f1f1f;
 }
 
+#formularioServicios{
+    color: #1f1f1f;
+}

@@ -96,9 +96,12 @@ if(empty($mensajes)){
                     <div id="emailHelp" class="form-text">¿Has olvidado tu contraseña?</div>
                 </div>
             <button type="submit" class="btn btn-primary" name="login">Login</button>
+            <div class="mensaje">
+                <?= get_mensajes_html_format($mensajes); ?>
+            </div>
             </form>
     </div>
-    <?= get_mensajes_html_format($mensajes); ?>
+    
 
 </section>
 <!--End Hero Section -->
@@ -107,7 +110,7 @@ if(empty($mensajes)){
 <footer>
   
   <div class="footerBottom">
-      <p><small>Copyright &copy;2025; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
+      <p><small>Copyright &copy;2024; Designed by <span class="designer">Blanca Penabad Villar</span></small></p>
     </div>
 </footer>
 <!-- End Footer -->

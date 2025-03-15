@@ -1,10 +1,11 @@
 <?php
+
 include "lib/bd/base_datos.php";
 
 session_start();
 
 if (!isset($_SESSION['usuario'])) {
-    header('Location: login.php');
+    echo json_encode(["error" => true, "mensajes" => ["No tienes permiso para realizar esta acción."]]);
     exit();
 }
 
@@ -13,20 +14,24 @@ seleccionar_bd_gestorCitas($conexion);
 
 $mensajes = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_servicio'])) {
     $id_servicio = $_POST['id_servicio'];
-    $nombre_servicio = $_POST['nombre'];
-    $descripcion = $_POST['descripcion'];
+    $nombre_servicio = trim($_POST['nombre']);
+    $descripcion = trim($_POST['descripcion']);
     $precio = $_POST['precio'];
     $duracion = $_POST['duracion'];
 
-    // VALIDACIONES
-    if (empty($nombre_servicio)) {
-        $mensajes[] = "El nombre del servicio no puede estar vacío.";
-    } 
+    /* VALIDACIONES */
+    if (empty($nombre_servicio) || empty($descripcion) || empty($precio) || empty($duracion)) {
+        $mensajes[] = "Todos los campos son obligatorios.";
+    }
 
-    if (empty($descripcion)) {
-        $mensajes[] = "La descripción del servicio no puede estar vacía.";
+    if (!preg_match("/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{1,50}$/", $nombre_servicio)) {
+        $mensajes[] = "Nombre no válido. Solo letras y máximo 50 caracteres.";
+    }
+
+    if (strlen($descripcion) < 10) {
+        $mensajes[] = "La descripción debe tener al menos 10 caracteres.";
     }
 
     if (!is_numeric($precio) || $precio <= 0) {
@@ -37,18 +42,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $mensajes[] = "La duración debe ser un número positivo.";
     }
 
-    if (count($mensajes) > 0) {
-        foreach ($mensajes as $error) {
-            echo "<script>alert('$error'); window.location.href = 'dashboard_admin.php';</script>";
-        }
+    if (!empty($mensajes)) {
+        echo json_encode(["error" => true, "mensajes" => $mensajes]);
+        exit();
+    }
+
+    if (updateServicio($conexion, $id_servicio, $nombre_servicio, $duracion, $precio, $descripcion)) {
+        echo json_encode(["error" => false, "mensaje" => "Servicio actualizado con éxito"]);
     } else {
-        if (updateServicio($conexion, $id_servicio, $nombre_servicio, $duracion, $precio, $descripcion)) {
-            echo "<script>alert('Servicio actualizado con éxito');</script>";
-            header('Location: dashboard_admin.php'); 
-            exit();
-        } else {
-            echo "<script>alert('Error al actualizar el servicio.');</script>";
-        }
+        echo json_encode(["error" => true, "mensajes" => ["Error al actualizar el servicio."]]);
     }
 }
 
