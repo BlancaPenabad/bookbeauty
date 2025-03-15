@@ -13,7 +13,7 @@ O proxecto está enfocado en desenvolver unha **aplicación web de xestión de c
 | **Reservar cita**     | Usuarios e administradores poden crear citas na BD.                             |
 | **Cancelar cita**     | Usuarios e administradores poden eliminar citas da BD.                         |
 | **Editar cita**       | Usuarios e administradores poden modificar datos das citas na BD.              |
-| **Filtrar cita**      | Administradores poderán consultar e filtrar citas na BD.                       |
+| **Consultar cita**      | Administradores poderán consultar unha cita existente na BD.                       |
 | **Engadir servizo**   | Administradores poden engadir un novo servizo na BD.                           |
 | **Eliminar servizo**  | Administradores poden eliminar un servizo da BD.                               |
 | **Editar servizo**    | Administradores poden modificar datos dos servizos na BD.                     |
@@ -23,7 +23,7 @@ O proxecto está enfocado en desenvolver unha **aplicación web de xestión de c
 - **Reservar cita**: Permitir a tanto usuarios como administradores reservar unha cita especificando a data, o servizo que se van a realizar, o nome, email e teléfono do cliente.
 - **Cancelar cita**: Permitir a tanto usuarios como administradores eliminar/cancelar unha cita anteriormente programada.
 - **Editar citas**: Permitir a tanto usuarios como administradores modificar algunha das especificacións dunha cita anteriormente programada.
-- **Filtrar citas**: Permitir a tanto usuarios como administradores consultar e filtrar citas.
+- **Consultarar citas**: Permitir a tanto usuarios como administradores consultar citas existentes.
 - **Engadir servizo**: Permitir ao administrador dun negocio engadir un novo servizo á súa oferta, especificando un nome, breve descrición, duración aproximada, e prezo.
 - **Eliminar servizo**: Permitir ao administrador dun negocio eliminar un dos servizos ofertados.
 - **Editar servizo**: Permitir ao administrador dun negocio modificar algunha das especificacións dos servizos ofertados.

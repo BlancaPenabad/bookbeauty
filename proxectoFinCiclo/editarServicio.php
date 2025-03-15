@@ -10,7 +10,7 @@ if (!isset($_SESSION['usuario'])) {
 }
 
 $conexion = get_conexion();
-seleccionar_bd_gestorCitas($conexion);
+seleccionar_bd_bookBeauty($conexion);
 
 $mensajes = [];
 

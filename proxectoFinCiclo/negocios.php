@@ -5,7 +5,7 @@ include "lib/bd/utilidades.php";
 
 
 $conexion = get_conexion();
-seleccionar_bd_gestorCitas($conexion);
+seleccionar_bd_bookBeauty($conexion);
 $mensajes = array();
 
 if (isset($_GET['id_negocio'])) {
@@ -24,6 +24,8 @@ if($negocio == null){
   $nombre_negocio = $negocio['nombre'];
   $telefono_negocio = $negocio['telefono'];
   $direccion_negocio = $negocio['direccion'];
+  $descripcion_negocio = $negocio['descripcion'];
+  $email_negocio = $negocio['email'];
   $foto_negocio = $negocio['foto_negocio'];
 }
 
@@ -169,7 +171,7 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
               <h3>¿Quienes somos?</h3>
             </div>
             <div class="accordion-content">
-              <p><?= htmlspecialchars($telefono_negocio); ?></p>
+              <p><?= htmlspecialchars($descripcion_negocio); ?></p>
             </div>
           </div>
           <div class="accordion-item">
@@ -182,10 +184,11 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
           </div>
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Texto</h3>
+              <h3>Teléfono y email</h3>
             </div>
             <div class="accordion-content">
-              <p>Texto</p>
+              <p><?= htmlspecialchars($telefono_negocio); ?></p>
+              <p><?= htmlspecialchars($email_negocio); ?></p>
             </div>
           </div>
         </div>
@@ -289,7 +292,7 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
           <div class="box">
             <div class="icon"><i class="fa-solid fa-envelope"></i></div>
               <div class="text">
-                <h3>Envíanos un email a <a href="mailto:bookbeauty@bookbeauty.com">bookbeauty@bookbeauty.com</a></h3>
+                <h3>Envíanos un email a <a href="mailto:<?= htmlspecialchars($email_negocio)?>"><?= htmlspecialchars($email_negocio); ?></a></h3>
               </div>
           </div>
           <div class="box">

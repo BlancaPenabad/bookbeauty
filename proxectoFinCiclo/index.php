@@ -4,8 +4,8 @@ include "lib/bd/utilidades.php";
 
 
 $conexion = get_conexion();
-crear_bd_gestorCitas($conexion);
-seleccionar_bd_gestorCitas($conexion);
+crear_bd_bookBeauty($conexion);
+seleccionar_bd_bookBeauty($conexion);
 crear_tabla_administrador($conexion);
 crear_tabla_negocios($conexion);
 crear_tabla_servicios($conexion);

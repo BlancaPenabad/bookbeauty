@@ -27,15 +27,15 @@ function ejecutar_consulta($conexion, $sql){
 
 
 
-function crear_bd_gestorCitas($conexion){
-    $sql = "CREATE DATABASE IF NOT EXISTS gestorCitas";
+function crear_bd_bookBeauty($conexion){
+    $sql = "CREATE DATABASE IF NOT EXISTS BookBeauty";
     ejecutar_consulta($conexion, $sql);
 }
 
 
 
-function seleccionar_bd_gestorCitas($conexion){
-    $sql = "use gestorCitas";
+function seleccionar_bd_bookBeauty($conexion){
+    $sql = "use BookBeauty";
     ejecutar_consulta($conexion, $sql);
 
 }
@@ -61,6 +61,8 @@ function crear_tabla_negocios($conexion){
         nombre VARCHAR(100) NOT NULL,
         direccion VARCHAR(255) NOT NULL,
         telefono VARCHAR(15),
+        email VARCHAR(255),
+        descripcion VARCHAR(300),
         id_administrador INT,
         foto_negocio VARCHAR(255),
         FOREIGN KEY (id_administrador) REFERENCES administrador(id) ON DELETE CASCADE
@@ -322,7 +324,7 @@ function login($usuario, $password){
         session_start();
     }
     $conexion = get_conexion();
-    seleccionar_bd_gestorCitas($conexion);
+    seleccionar_bd_bookBeauty($conexion);
 
     $consulta = $conexion->prepare("SELECT * FROM administrador WHERE usuario = :usuario");
     $consulta->bindParam(':usuario', $usuario);

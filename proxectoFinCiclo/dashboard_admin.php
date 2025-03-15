@@ -17,8 +17,8 @@ if(!isset($_SESSION['usuario'])){
 }
 
 $conexion = get_conexion();
-crear_bd_gestorCitas($conexion);
-seleccionar_bd_gestorCitas($conexion);
+crear_bd_bookBeauty($conexion);
+seleccionar_bd_bookBeauty($conexion);
 crear_tabla_administrador($conexion);
 
 //Obtengo el ID del administrador loggeado para mostrar los datos de su negocio

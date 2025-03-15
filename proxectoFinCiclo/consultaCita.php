@@ -6,7 +6,7 @@ if (isset($_GET['codigo_unico'])) {
     $codigo_unico = $_GET['codigo_unico'];
 
     $conexion = get_conexion();
-    seleccionar_bd_gestorCitas($conexion);
+    seleccionar_bd_bookBeauty($conexion);
 
     $mensajes = array();
 

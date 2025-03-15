@@ -4,7 +4,7 @@ include "lib/bd/base_datos.php";
 include "lib/bd/utilidades.php";
 
 $conexion = get_conexion();
-seleccionar_bd_gestorCitas($conexion);
+seleccionar_bd_bookBeauty($conexion);
 
 $mensajes = array();
 
