@@ -1,6 +1,7 @@
 <?php
 include "lib/bd/base_datos.php";
 include "lib/bd/utilidades.php";
+include "lib/bd/valoresDefecto.php";
 
 
 $conexion = get_conexion();
@@ -10,6 +11,12 @@ crear_tabla_administrador($conexion);
 crear_tabla_negocios($conexion);
 crear_tabla_servicios($conexion);
 crear_tabla_citas($conexion);
+
+/* VALORES POR DEFECTO */
+insertar_administrador($conexion);
+insertar_negocio($conexion);
+insertar_servicios($conexion);
+insertar_citas($conexion);
 
 
 $negocios = nombres_negocios($conexion);
@@ -56,9 +63,6 @@ $negocios = nombres_negocios($conexion);
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="#reserva">CONSULTA TU CITA</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#opcionesI">OPCIONES</a>
-            </li>
           </ul>
         </div>
       </div>
@@ -98,50 +102,19 @@ $negocios = nombres_negocios($conexion);
     </section>
     <section class="dos"  id="beneficios">
         <h2>BENEFICIOS</h2>
-        <div class="accordion">
-          <div class="accordion-item">
-            <div class="accordion-header">
-              <h3>Texto</h3>
-            </div>
-            <div class="accordion-content">
-              <p>Texto</p>
-            </div>
-          </div>
-        
-          <div class="accordion-item">
-            <div class="accordion-header">
-              <h3>Texto</h3>
-            </div>
-            <div class="accordion-content">
-              <p>Texto</p>
-            </div>
-          </div>
-        
-          <div class="accordion-item">
-            <div class="accordion-header">
-              <h3>Texto</h3>
-            </div>
-            <div class="accordion-content">
-              <p>Texto</p>
-            </div>
-          </div>
-        </div>
         <section class="analisis-datos">
           <div class="iconos">
             <div class="icono">
               <i class="fa-solid fa-gear"></i>
               <h4>EFICIENCIA</h4>
-              <p>Texto</p>
             </div>
             <div class="icono">
               <i class="fa-solid fa-hand-holding-hand"></i>
               <h4>FIABILIDAD</h4>
-              <p>Texto</p>
             </div>
             <div class="icono">
               <i class="fa-solid fa-clock"></i>        
               <h4>AHORRO DE TIEMPO</h4>
-              <p>Texto</p>
             </div>
           </div>
         </section>
@@ -160,51 +133,7 @@ $negocios = nombres_negocios($conexion);
         </div>
     </div>
     </section>
-    <section class="cuatro" id="opcionesI">
-      <section id="opciones">
-        <h2>Elige tu opción...</h2>
-        <div class="contenedor">
-            <div class="opcion">
-                <h3>BÁSICO</h3>
-                <p>TextoTextoTextoTextoTextoTexto
-                  TextoTextoTextoTextoTexto</p>
-                <ul>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                </ul>
-            </div>
-            <div class="opcion">
-                <h3>AVANZADO</h3>
-                <p>Integración con el HPM y
-                  fijación AUTOMÁTICA de precios</p>
-                <ul>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                    <li>Texto</li>
-                </ul>
-            </div>
-        </div>
-        <section class="masDatos"></section>
-          <div class="iconosI">
-            <div class="iconoI">
-              <i class="fa-solid fa-tag"></i>
-              <h4>PRECIO </br> CITA</h4>
-              <h3>+30%</h3>
-            </div>
-            <div class="iconoI">
-              <i class="fa-solid fa-bed"></i>
-              <h4>TEXTO</h4>
-              <h3>+15%</h3>
-            </div>
-            <div class="iconoI">
-              <i class="fa-solid fa-user-tie"></i>     
-              <h4>TAREAS ADMIN.</h4>
-              <h3>-8h/mes</h3>
-            </div>
-          </div>
-        </section>
-    </section>
+    
     </section>
     </div>
   <a href="#" class="to-top">

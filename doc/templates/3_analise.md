@@ -87,3 +87,5 @@ As versións futuras do sistema poderían incorporar melloras:
 - **Despregue nun servidor web público**: Para que sexa accesible a través de internet.
 
 - **Recuperación de contrasinais**: Sistema de recuperación de contrasinais para administradores.
+
+- **Uso de frameworks para PHP**

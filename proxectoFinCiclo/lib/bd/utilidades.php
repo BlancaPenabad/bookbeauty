@@ -68,7 +68,7 @@ function enviarCorreoConfirmacion($email, $nombre_cliente, $nombre_negocio, $fec
         $mail->SMTPSecure = 'ssl';
         $mail->Port = 465;
 
-        $mail->setFrom('a22blancapv@iessanclemente.net', 'Gestor Citas');
+        $mail->setFrom('a22blancapv@iessanclemente.net', 'BookBeauty');
         $mail->addAddress($email);  // Email del cliente
 
         $mail->isHTML(true);
