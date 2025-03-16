@@ -316,6 +316,45 @@ function get_citas_negocio($conexion, $id_negocio){
 
 }
 
+function get_horas_negocio($conexion, $id_negocio) {
+    $sql = "
+        SELECT 
+            citas.id, 
+            citas.fecha, 
+            citas.nombre_cliente, 
+            citas.email_cliente, 
+            citas.tlf_cliente, 
+            citas.codigo_unico, 
+            citas.estado, 
+            citas.id_servicio,
+            servicios.duracion 
+        FROM citas
+        JOIN servicios ON citas.id_servicio = servicios.id_servicio
+        WHERE servicios.id_negocio = :id_negocio
+        ORDER BY citas.fecha ASC
+    ";
+
+    $stmt = $conexion->prepare($sql);
+    $stmt->bindParam(':id_negocio', $id_negocio, PDO::PARAM_INT);
+    $stmt->execute();
+
+    $citas = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    foreach ($citas as &$cita) {
+        if ($cita['fecha'] && $cita['duracion'] > 0) {
+            $fecha_cita = new DateTime($cita['fecha']);
+            $fecha_cita_fin = clone $fecha_cita;
+            $fecha_cita_fin->modify('+' . $cita['duracion'] . ' minutes');
+            $cita['fecha_final'] = $fecha_cita_fin->format('Y-m-d H:i:s');
+        } else {
+            $cita['fecha_final'] = $cita['fecha']; 
+        }
+    }
+    unset($cita); 
+
+    return $citas;
+}
+
 
 
 function login($usuario, $password){

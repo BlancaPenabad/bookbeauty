@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
       },
       locale: 'es',
       //initialDate: '2023-01-12',
-      initialDate: '2024-12-14',
+      initialDate: '2025-03-16',
       navLinks: true, 
       selectable: true,
       selectMirror: true,

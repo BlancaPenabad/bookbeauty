@@ -229,39 +229,39 @@ if (isset($_POST['delete_cita_id'])) {
                                   <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                               </form>
                               <button class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" onclick="cargarDatosServicio(<?= $servicio['id_servicio']; ?>)">Editar</button>
-
                               <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
-                                  <div class="modal-content">
-                                    <div class="modal-header">
-                                      <h5 class="modal-title" id="editModalLabel">Editar Servicio</h5>
-                                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editModalLabel">Editar Servicio</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="formularioServicios" method="POST">
+                                                <input type="hidden" id="editServicioId" name="id_servicio">
+                                                <div class="mb-3">
+                                                    <label for="editNombre" class="form-label">Nombre</label>
+                                                    <input type="text" class="form-control" id="editNombre" name="nombre" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="editDescripcion" class="form-label">Descripción</label>
+                                                    <textarea class="form-control" id="editDescripcion" name="descripcion" required></textarea>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="editPrecio" class="form-label">Precio</label>
+                                                    <input type="number" class="form-control" id="editPrecio" name="precio" step="0.01" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="editDuracion" class="form-label">Duración (minutos)</label>
+                                                    <input type="number" class="form-control" id="editDuracion" name="duracion" required>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+                                            </form>
+                                        </div>
                                     </div>
-                                    <div class="modal-body">
-                                      <form id="formularioServicios" method="POST" action="editarServicio.php">
-                                        <input type="hidden" id="editServicioId" name="id_servicio">
-                                        <div class="mb-3">
-                                          <label for="editNombre" class="form-label">Nombre</label>
-                                          <input type="text" class="form-control" id="editNombre" name="nombre" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="editDescripcion" class="form-label">Descripción</label>
-                                          <textarea class="form-control" id="editDescripcion" name="descripcion" required></textarea>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="editPrecio" class="form-label">Precio</label>
-                                          <input type="number" class="form-control" id="editPrecio" name="precio" step="0.01" required>
-                                        </div>
-                                        <div class="mb-3">
-                                          <label for="editDuracion" class="form-label">Duración (minutos)</label>
-                                          <input type="number" class="form-control" id="editDuracion" name="duracion" required>
-                                        </div>
-                                        <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                                      </form>
-                                    </div>
-                                  </div>
                                 </div>
-                              </div>
+                            </div>
+
                               </td>
                           </tr>
                       <?php endforeach; ?>
@@ -529,6 +529,63 @@ if (isset($_POST['delete_cita_id'])) {
             }
         })
         .catch(error => console.error("Error en la petición:", error));
+    });
+});
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const formularioServicios = document.getElementById("formularioServicios");
+
+    formularioServicios.addEventListener("submit", function (event) {
+        event.preventDefault(); 
+
+        let nombre = document.getElementById("editNombre").value.trim();
+        let descripcion = document.getElementById("editDescripcion").value.trim();
+        let precio = document.getElementById("editPrecio").value.trim();
+        let duracion = document.getElementById("editDuracion").value.trim();
+
+        let errores = [];
+
+        if (nombre === "" || nombre.length > 50) {
+            errores.push("El nombre es obligatorio y no debe superar los 50 caracteres.");
+        }
+
+        if (descripcion === "" || descripcion.length < 10) {
+            errores.push("La descripción es obligatoria y debe tener al menos 10 caracteres.");
+        }
+
+        if (isNaN(precio) || parseFloat(precio) <= 0) {
+            errores.push("El precio debe ser un número mayor a 0.");
+        }
+
+        if (isNaN(duracion) || parseInt(duracion) <= 0) {
+            errores.push("La duración debe ser un número mayor a 0.");
+        }
+
+        if (errores.length > 0) {
+            alert(errores.join("\n")); 
+            return;
+        }
+
+        const formData = new FormData(formularioServicios);
+
+        fetch("editarServicio.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.mensajes.join("\n")); 
+            } else {
+                alert(data.mensaje); 
+                location.reload(); 
+            }
+        })
+        .catch(error => {
+            console.error("Error en la petición:", error);
+            alert("Hubo un error al procesar la solicitud.");
+        });
     });
 });
 </script>

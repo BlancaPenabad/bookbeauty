@@ -70,6 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
           $mensajes[] = array("success", "Tu cita se ha registrado correctamente. ¡Gracias!");
 
           enviarCorreoConfirmacion($email_cliente, $nombre_cliente, $nombre_negocio, $fecha, $codigo_unico);
+          enviarCorreoConfirmacionNegocio($email_negocio, $nombre_cliente, $nombre_negocio, $fecha, $codigo_unico, $servicio_nombre);
 
           header('Location: cita_confirmada.php?id_servicio=' . urlencode($id_servicio) . '&fecha=' . urlencode($fecha) . '&nombre_cliente=' . urlencode($nombre_cliente) . '&email_cliente=' . urlencode($email_cliente) . '&tlf_cliente=' . urlencode($tlf_cliente) . '&codigo_unico=' . urlencode($codigo_unico));
           exit;
@@ -78,21 +79,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       }
   }
 }
-$citas_ocupadas = get_citas_negocio($conexion, $id_negocio);
+
+
+$citas_ocupadas = get_horas_negocio($conexion, $id_negocio);
 
 $horas_ocupadas = [];
 foreach ($citas_ocupadas as $cita) {
     $fecha_ocupada = new DateTime($cita['fecha']);
-    $fecha_ocupada->modify('+' . $cita['duracion'] . ' minutes');
-    // Solo guardamos la fecha y hora (sin minutos)
-    $horas_ocupadas[] = $fecha_ocupada->format('H:i'); 
+    $fecha_ocupada_fin = new DateTime($cita['fecha_final']); // Usar la fecha final calculada
+
+    while ($fecha_ocupada <= $fecha_ocupada_fin) {
+        $horas_ocupadas[] = [
+            'fecha' => $fecha_ocupada->format('Y-m-d'),
+            'hora' => $fecha_ocupada->format('H:i') // Formato HH:MM
+        ];
+        $fecha_ocupada->modify('+30 minutes'); // Intervalo de 30 minutos
+    }
 }
 
 $horas_ocupadas_json = json_encode($horas_ocupadas);
-
-
-
-
 
 
 ?>
@@ -251,12 +256,15 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
                         <option value="">No hay servicios disponibles</option>
                     <?php endif; ?>
                 </select>
-                <?php $citas_ocupadas = get_citas_negocio($conexion, $id_negocio);
+                <?php $citas_ocupadas = get_horas_negocio($conexion, $id_negocio);
                 ?>
               <label for="fecha">Fecha y hora:</label>
               <div class="fecha-hora-container">
                 <input type="text" class="form-control" id="fecha" name="fecha" required>
-                <input type="time" class="form-control" id="hora" name="hora" required>
+                <input type="text" class="form-control" id="hora" name="hora" list="horasDisponibles" required>
+                <datalist id="horasDisponibles">
+                    <!-- Las opciones se generarán dinámicamente -->
+                </datalist>
               </div>
               <label for="nombre">Nombre:</label>
               <input type="text" class="form-control" id="nombre" name="nombre" required>
@@ -343,8 +351,8 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
           const content = header.nextElementSibling;
           const button = header.querySelector('.accordion-button');
     
-          content.classList.toggle('show'); // Muestra u oculta el contenido
-          button.textContent = button.textContent === '+' ? '-' : '+'; // Cambia el símbolo
+          content.classList.toggle('show'); 
+          button.textContent = button.textContent === '+' ? '-' : '+'; 
       });
     });
     
@@ -361,83 +369,59 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
     flatpickr("#fecha", {
             disable: [
                 function(date) {
-                    // Deshabilitar sábados y domingos
+                    
                     return (date.getDay() === 0 || date.getDay() === 6);
                 }
             ],
-            dateFormat: "Y-m-d", // Formato de fecha
+            dateFormat: "Y-m-d",
             minDate: "today", 
             locale:{
               firstDayOfWeek:1
             }
         });
     
-        flatpickr("#hora", {
-        enableTime: true,
-        noCalendar: true,
-        dateFormat: "H:i", // Formato de hora
-        altFormat: "h:i", // Formato alternativo para mostrar
-        time_24hr: true,
-        minTime: "10:00", // Hora mínima
-        maxTime: "20:00", // Hora máxima
-        minuteIncrement: 30, // Intervalo de minutos
-    
-        onReady: function() {
-            this.calendarContainer.classList.add('custom-timepicker'); // Para estilos personalizados si lo deseas
-        }
-    });
 
 </script>
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelector(".reserva-form").addEventListener("submit", function(event) {
-        let errores = [];
+document.addEventListener("DOMContentLoaded", function () {
+    const horasOcupadas = <?= $horas_ocupadas_json; ?>; 
+    const inputHora = document.getElementById("hora");
+    const datalist = document.getElementById("horasDisponibles");
 
-        let nombre = document.getElementById("nombre");
-        let email = document.getElementById("email");
-        let telefono = document.getElementById("tlf");
+    function actualizarHorasDisponibles() {
+        const fechaSeleccionada = document.getElementById("fecha").value;
+        if (!fechaSeleccionada) return; 
 
-        let nombreValor = nombre.value.trim();
-        let emailValor = email.value.trim();
-        let telefonoValor = telefono.value.trim();
+        const horasOcupadasFecha = horasOcupadas
+            .filter(hora => hora.fecha === fechaSeleccionada)
+            .map(hora => hora.hora);
 
-        let patronNombre = /^[A-Za-zÁÉÍÓÚáéíóúÜüÑñ\s]+$/;  
-        let patronTlf = /^[0-9\s]+$/;  
-        let patronEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
+        datalist.innerHTML = '';
 
-        // Validar nombre
-        if (!patronNombre.test(nombreValor)) {
-            errores.push("El nombre solo puede contener letras y espacios.");
-            nombre.classList.add("is-invalid");
-        } else {
-            nombre.classList.remove("is-invalid");
+        const horaInicio = new Date(`${fechaSeleccionada} 10:00`);
+        const horaFin = new Date(`${fechaSeleccionada} 20:00`);
+        const intervalo = 30; 
+
+        while (horaInicio <= horaFin) {
+            const horaFormateada = horaInicio.toLocaleTimeString('es-ES', {
+                hour: '2-digit',
+                minute: '2-digit',
+                hour12: false
+            }); 
+
+            if (!horasOcupadasFecha.includes(horaFormateada)) {
+                const option = document.createElement("option");
+                option.value = horaFormateada;
+                option.textContent = horaFormateada;
+                datalist.appendChild(option);
+            }
+            horaInicio.setMinutes(horaInicio.getMinutes() + intervalo);
         }
+    }
 
-        // Validar email
-        if (!patronEmail.test(emailValor)) {
-            errores.push("Introduce un email válido.");
-            email.classList.add("is-invalid");
-        } else {
-            email.classList.remove("is-invalid");
-        }
+    document.getElementById("fecha").addEventListener("change", actualizarHorasDisponibles);
 
-        // Validar teléfono
-        let telefonoSinEspacios = telefonoValor.replace(/\s/g, ''); 
-        if (telefonoSinEspacios.length < 9) {
-            errores.push("El teléfono debe contener al menos 9 dígitos.");
-            telefono.classList.add("is-invalid");
-        } else if (!patronTlf.test(telefonoValor)) {
-            errores.push("El teléfono solo puede contener números y espacios.");
-            telefono.classList.add("is-invalid");
-        } else {
-            telefono.classList.remove("is-invalid");
-        }
-
-        if (errores.length > 0) {
-            event.preventDefault();  
-            alert(errores.join("\n")); 
-        }
-    });
+    actualizarHorasDisponibles();
 });
 </script>
  <!--Bootstrap JS-->

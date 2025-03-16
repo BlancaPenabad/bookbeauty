@@ -145,7 +145,6 @@ if (isset($_POST['eliminar_cita'])) {
                     </tr>
                 </tbody>
             </table>
-        <?php endif; ?>
         <div class="d-flex justify-content-between">
             <a href="#" class="btn btn-warning" id="editConsultaCitaBtn" data-bs-toggle="modal" data-bs-target="#editConsultaCitaModal">Editar</a>
             <form method="POST" onsubmit="return confirm('¿Estás seguro de que deseas eliminar esta cita?');">
@@ -154,6 +153,7 @@ if (isset($_POST['eliminar_cita'])) {
             </form>
         </div>
     </div>
+    <?php endif; ?>
 </section>
 <!--End Detalles de la cita -->
 
@@ -174,35 +174,23 @@ if (isset($_POST['eliminar_cita'])) {
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="formulario-editar-cita" action="validarCita.php" method="POST">
+                <form id="formulario-editar-cita" method="POST">
                     <input type="hidden" id="editCitaId" name="id_cita">
                     <div class="mb-3">
-                        <label for="editCitaServicio" class="form-label">Servicio</label>
-                        <select class="form-control" id="editCitaServicio" name="id_servicio" required>
-                            <option value="">Seleccione un servicio</option>
-                            <?php
-                            $servicios = datos_servicios($conexion, $id_administrador);
-                            foreach ($servicios as $servicio) {
-                                echo "<option value='" . $servicio['id_servicio'] . "'>" . htmlspecialchars($servicio['nombre']) . "</option>";
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="editCitaFecha" class="form-label">Fecha</label>
+                        <label for="editCitaFecha" class="form-label">Fecha:</label>
                         <input type="datetime-local" class="form-control" id="editCitaFecha" name="fecha" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editCitaCliente" class="form-label">Cliente</label>
-                        <input type="text" class="form-control" id="editCitaCliente" name="cliente" required>
+                        <label for="editCitaCliente" class="form-label">Cliente:</label>
+                        <input type="text" class="form-control" id="editCitaCliente" name="nombre_cliente" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editCitaTelefono" class="form-label">Teléfono</label>
-                        <input type="tel" class="form-control" id="editCitaTelefono" name="telefono" required>
+                        <label for="editCitaTelefono" class="form-label">Teléfono:</label>
+                        <input type="tel" class="form-control" id="editCitaTelefono" name="tlf_cliente" required>
                     </div>
                     <div class="mb-3">
-                        <label for="editCitaEmail" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="editCitaEmail" name="email" required>
+                        <label for="editCitaEmail" class="form-label">Email:</label>
+                        <input type="email" class="form-control" id="editCitaEmail" name="email_cliente" required>
                     </div>
                     <button type="submit" class="btn btn-primary">Guardar cambios</button>
                 </form>
@@ -232,6 +220,63 @@ if (isset($_POST['eliminar_cita'])) {
         document.getElementById('editCitaTelefono').value = telefono;
         document.getElementById('editCitaEmail').value = email;
     });
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const formularioEditarCita = document.getElementById("formulario-editar-cita");
+
+    formularioEditarCita.addEventListener("submit", function (event) {
+        event.preventDefault(); 
+
+        let fecha = document.getElementById("editCitaFecha").value.trim();
+        let nombreCliente = document.getElementById("editCitaCliente").value.trim();
+        let telefono = document.getElementById("editCitaTelefono").value.trim();
+        let email = document.getElementById("editCitaEmail").value.trim();
+
+        let errores = [];
+
+        if (fecha === "") {
+            errores.push("La fecha es obligatoria.");
+        }
+
+        if (nombreCliente === "" || !/^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ\s]{1,50}$/.test(nombreCliente)) {
+            errores.push("El nombre del cliente es obligatorio y debe contener solo letras (máximo 50 caracteres).");
+        }
+
+        if (telefono === "" || !/^\d{9,15}$/.test(telefono)) {
+            errores.push("El teléfono debe tener entre 9 y 15 dígitos.");
+        }
+
+        if (email === "" || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errores.push("El email no es válido.");
+        }
+
+        if (errores.length > 0) {
+            alert(errores.join("\n")); 
+            return;
+        }
+
+        const formData = new FormData(formularioEditarCita);
+
+        fetch("validarCita.php", {
+            method: "POST",
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.mensajes.join("\n")); 
+            } else {
+                alert(data.mensaje); 
+                location.reload(); 
+            }
+        })
+        .catch(error => {
+            console.error("Error en la petición:", error);
+            alert("Hubo un error al procesar la solicitud.");
+        });
+    });
+});
 </script>
 </body>
 </html>

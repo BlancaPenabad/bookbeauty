@@ -86,5 +86,42 @@ function enviarCorreoConfirmacion($email, $nombre_cliente, $nombre_negocio, $fec
     }
 }
 
+function enviarCorreoConfirmacionNegocio($email_negocio, $nombre_cliente, $nombre_negocio, $fecha, $codigo_unico, $servicio_nombre) {
+    $mail = new PHPMailer(true);
+
+    $mail->CharSet = 'UTF-8';
+
+    try {
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com'; 
+        $mail->SMTPAuth = true;
+        $mail->Username = 'a22blancapv@iessanclemente.net';  
+        $mail->Password = 'mukh fyqy bslf amub'; 
+        $mail->SMTPSecure = 'ssl';
+        $mail->Port = 465;
+
+        $mail->setFrom('a22blancapv@iessanclemente.net', 'BookBeauty');
+        $mail->addAddress($email_negocio);  // Email del negocio
+
+        // Contenido del correo
+        $mail->isHTML(true);
+        $mail->Subject = 'Nueva cita reservada en ' . $nombre_negocio;
+        $mail->Body    = "Hola,<br><br>
+                          Se ha reservado una nueva cita en <b>$nombre_negocio</b>.<br><br>
+                          <b>Detalles de la cita:</b><br>
+                          <b>Cliente:</b> $nombre_cliente<br>
+                          <b>Servicio:</b> $servicio_nombre<br>
+                          <b>Fecha y Hora:</b> $fecha<br>
+                          <b>Código de cita:</b> $codigo_unico<br><br>
+                          Por favor, revisa la reserva en tu sistema de gestión.<br><br>
+                          Gracias.";
+
+        // Enviar el correo
+        $mail->send();
+    } catch (Exception $e) {
+        echo "Error al enviar el correo al negocio: {$mail->ErrorInfo}";
+    }
+}
+
 
 ?>
