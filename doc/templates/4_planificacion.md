@@ -5,7 +5,7 @@ O obxectivo principal da aplicación é permitir que tanto os administradores do
 
 ### Calendario:
 
-O proxecto lévase a cabo desde  o 24 de setembro, día da primeira reunión informativa sobre a FCT e os proxectos de fin de ciclo onde comezo co estudo preliminar, ata o 16 de marzo, data límite para a entrega do proxecto. O proxecto, que estaba suposto a ser rematado e presentado na primeira convocatoria de decembro, finalmente tivo que aprazarse ata a segunda convocatoria de marzo por motivos persoais.
+O proxecto levarase a cabo dende o 24 de setembro, día da primeira reunión informativa sobre a FCT e os proxectos de fin de ciclo, ata o 16 de marzo, data límite para a entrega do proxecto. O proxecto, que estaba previsto ser rematado e presentado na primeira convocatoria de decembro, tivo que ser aprazado ata a segunda convocatoria de marzo debido a unha prolongación da fase de codificación e probas así como fase documental. Durante este período, estiven realizando correccións e melloras no código e documentación ata o último momento, co fin de garantir un funcionamento óptimo e unha alta calidade do produto final.
 
 #### Fase 1: Estudo preliminar
 
@@ -40,17 +40,17 @@ Durante esta  fase elaboraranse os deseños da interface de usuario (HTML, CSS e
 
 - Data de inicio:  29 de outubro
 - Data de término: 30 de novembro
-- Duración estimada: 1 mes
+- Duración estimada: 1 mes **(prolongada debido a correccións e melloras)**
 
-Nesta etapa, empezarase a escribir o código da aplicación segundo as ideas e esquemas establecidos anteriormente. De atoparse con algunha dificultade, seguirase aprendendo e formando nas linguaxes de programación e tecnoloxías elexidas. Ao mesmo tempo que se desenvolve o código, faránse probas para asegurarse de que o software funcione ben e sexa de calidade.
+Nesta etapa, comezouse a escribir o código da aplicación segundo as ideas e esquemas establecidos anteriormente. Durante este proceso, atopáronse algunhas dificultades técnicas que requiriron un tempo adicional para a súa resolución. Ademais, estivéronse realizando correccións e melloras no código ata o último momento, co fin de garantir un funcionamento óptimo e unha alta calidade do produto final. Esta fase prolongouse máis do previsto, o que motivou o aprazamento da entrega do proxecto á segunda convocatoria.
 
 #### Fase 5: Documentación
 
 - Data de inicio:  30 de novembro
 - Data de término: 16 de marzo
-- Duración estimada: 40 días
+- Duración estimada: 3 meses
 
-Nesta etapa final, a cal extendeuse ata a convocatoria do segundo trimestre, completaránse aqueles aspectos da documentación que quedaban sen responder, ultimaránse partes da codificación que estaban pendentes, elaboraránse os esquemas e diagramas e detallarase a planificación de todo o proxecto.
+Nesta etapa final (que se extendeu ata a convocatoria do segundo trimestre) completaránse aqueles aspectos da documentación que quedaban sen responder, ultimaránse partes da codificación que estaban pendentes, elaboraránse os esquemas e diagramas e detallarase a planificación de todo o proxecto.
 
 #### Data de presentación do proxecto:
 

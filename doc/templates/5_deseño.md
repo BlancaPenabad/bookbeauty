@@ -29,3 +29,6 @@ O usuario cliente só vai poder consultar, editar e eliminar as súas citas así
 ![Diagrama de Base de Datos](../img/diagramaBD.PNG)
 
 ## Diagrama de compoñentes software que constitúen o produto e de despregue.
+![Diagrama de Compoñentes](../img/diagramaComponentes.JPG)
+![Diagrama de Despregue](../img/diagramaDespliegue.JPG)
+

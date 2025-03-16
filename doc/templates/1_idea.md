@@ -3,6 +3,7 @@
 # Proxecto de Desenvolvemento de Aplicación Web de Xestión de Citas
 
 O proxecto que vou realizar consiste no desenvolvemento dunha **aplicación web de xestión de citas** orientada a negocios de servizos estéticos, medicina estética ou benestar (centros de medicina estética, dentistas, perruquerías, salóns de beleza…). A aplicación centrarase na xestión de citas para distintos servizos relacionados (tratamentos estéticos, medicina estética, tratamentos capilares, masaxes, manicuras…). A aplicación estará dispoñible a través de internet, accesible desde calquer dispositivo que conte cun navegador web, polo que non será necesaria a instalación dun software adiccional.
+**Actualmente, o programa está en fase de desenvolvemento e probas nun entorno local usando XAMPP, polo que non está subido a internet.**
 
 ## Obxectivo Principal
 
@@ -14,14 +15,14 @@ O programa establecerá un acceso baseado en roles (administradores do negocio e
 # Requisitos Funcionais (RF)
 
 ## RF1: Autenticación de administradores
-- **RF1.1**: Os administradores deben iniciar sesión mediante correo electrónico e contrasinal.
+- **RF1.1**: Os administradores deben iniciar sesión mediante nome de usuario e contrasinal.
 
 ## RF2: Xestión de servizos ofertados
 - **RF2.1**: Os administradores poderán engadir novos servizos ofertados.
 - **RF2.2**: Os administradores poderán eliminar servizos ofertados.
 - **RF2.3**: Os administradores poderán editar os servizos ofertados.
 - **RF2.4**: O programa permitirá aos administradores visualizar unha lista completa dos servizos ofertados.
-- **RF2.5**: O programa permitirá aos clientes ver unha lista completa dos servizos ofertados, así como acceder a información detallada dos mesmos (en qué consisten, duración do procedemento, duración de resultados e prezos).
+- **RF2.5**: O programa permitirá aos clientes ver unha lista completa dos servizos ofertados, así como acceder a información detallada dos mesmos (en qué consisten, duración dos procedementos e prezos).
 
 ## RF3: Xestión de citas
 - **RF3.1**: O programa permitirá aos administradores visualizar unha lista completa das próximas citas reservadas por clientes.
@@ -29,7 +30,7 @@ O programa establecerá un acceso baseado en roles (administradores do negocio e
 - **RF3.3**: Os clientes deberán especificar o servizo que se van a realizar na cita.
 - **RF3.4**: Os clientes poderán cancelar a súa cita.
 - **RF3.5**: Os administradores poderán engadir novas citas.
-- **RF3.6**: Os administradores poderán elimina
+- **RF3.6**: Os administradores poderán eliminar citas existentes.
 
 ## RF4: Sistema de notificacións
 - **RF4.1**: O programa enviará unha notificación ao cliente vía email unha vez se formalice a reserva da cita coa confirmación da mesma.
@@ -37,5 +38,11 @@ O programa establecerá un acceso baseado en roles (administradores do negocio e
 
 # Arquitectura do Software
 - **Backend**: PHP
-- **Frontend**: HTML, CSS e Bootstrap
+- **Frontend**: HTML, CSS, **JavaScript** e Bootstrap
+  - **JavaScript**: Para validacións de formularios, interaccións dinámicas e mellora da experiencia do usuario.
+  - **Bootstrap**: Framework CSS para o deseño responsive da interface de usuario.
 - **Base de datos**: MySQL (relacional)
+
+## Nota sobre o Entorno de Desenvolvemento
+
+Actualmente, o programa está en fase de desenvolvemento e probas nun **entorno local usando XAMPP**. Isto significa que a aplicación está configurada para funcionar nun servidor local (Apache) cunha base de datos MySQL, pero non está desplegada nun servidor web público. Nun futuro, a aplicación poderá ser subida a un servidor web para o seu uso en liña.

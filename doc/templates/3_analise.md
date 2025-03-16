@@ -35,9 +35,42 @@ O proxecto está enfocado en desenvolver unha **aplicación web de xestión de c
 
 ## Entorno operacional
 
-Estimación de plataformas, hardware e software necesarias para a implementación.
+O programa **BookBeauty** está deseñado para funcionar nun **entorno local** durante a fase de desenvolvemento e probas, utilizando **XAMPP** como plataforma de servidor local. A continuación, descríbense os requisitos técnicos e o entorno operacional necesario para a súa implementación:
 
-## Interfaces externos
+### Plataforma de Desenvolvemento
+
+- **XAMPP**: Servidor local que inclúe Apache, MySQL e PHP.
+  - **Apache**: Servidor web para executar a aplicación.
+  - **MySQL**: Sistema de xestión de bases de datos para almacenar información de citas, servizos e usuarios.
+  - **PHP**: Linguaxe de programación para o backend da aplicación.
+
+### Requisitos de Hardware
+
+- **Procesador**: Intel Core i3 ou superior.
+- **Memoria RAM**: 4 GB mínimo (recoméndanse 8 GB para un rendemento óptimo).
+- **Almacenamento**: 500 MB de espazo libre para a instalación de XAMPP e a aplicación.
+- **Conexión a Internet**: Non é necesaria para o funcionamento local, pero é recomendable para probas de notificacións por correo electrónico.
+
+### Requisitos de Software
+
+- **Sistema Operativo**: Compatible con Windows, macOS ou Linux.
+- **Navegador Web**: Compatible con Google Chrome, Mozilla Firefox, Microsoft Edge ou Safari (últimas versións recomendadas).
+- **PHP**: Versión 7.4 ou superior.
+- **MySQL**: Versión 5.6 ou superior.
+- **Bootstrap**: Framework CSS para o deseño responsive da interface de usuario.
+
+### Entorno de Produción Futuro
+
+Unha vez finalizado o desenvolvemento e as probas, a aplicación poderá ser desplegada nun **servidor web público** con soporte para PHP e MySQL. As opcións inclúen:
+
+- **Servidores compartidos**: Como Hostinger, Bluehost ou SiteGround.
+- **Servidores na nube**: Como AWS, Google Cloud ou Microsoft Azure.
+- **Servidores dedicados**: Para negocios que requiren maior control e escalabilidade.
+
+### Notas Adicionais
+
+- **Escalabilidade**: A aplicación está deseñada para ser escalable, permitindo a inclusión de novos negocios e servizos sen modificar a estrutura base.
+
 
 ### Interface de usuario
 
@@ -48,5 +81,9 @@ O programa **Xestor de Citas**, interaccionará co exterior exclusivamente por v
 As versións futuras do sistema poderían incorporar melloras:
 
 - **Recordatorios**: Recordatorios vía **email/SMS** aos clientes das citas programadas 24h antes da data establecida.
-- **Calendario**: Vista tipo **calendario diario** onde se mostren as citas programadas e os ocos libres dun xeito visual e claro para facilitar a organización aos administradores.
+
 - **Citas simultáneas**: Permitir simultaneidade de citas en función do número de traballadores dun negocio e da súa disponibilidade.
+
+- **Despregue nun servidor web público**: Para que sexa accesible a través de internet.
+
+- **Recuperación de contrasinais**: Sistema de recuperación de contrasinais para administradores.
