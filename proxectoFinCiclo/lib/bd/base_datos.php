@@ -108,16 +108,15 @@ function crear_tabla_citas($conexion){
 
 
 
-function addServicio($conexion, $nombre_servicio, $duracion, $precio, $descripcion){
-
-    $consulta = $conexion->prepare("INSERT INTO servicios (nombre_servicio, duracion, precio, descripcion) VALUES (:nombre_servicio, :duracion, :precio, :descripcion)");
-    $consulta->bindParam(':nombre_servicio', $nombre_servicio);
+function addServicio($conexion, $nombre, $duracion, $precio, $descripcion, $id_negocio) {
+    $consulta = $conexion->prepare("INSERT INTO servicios (nombre, duracion, precio, descripcion, id_negocio) VALUES (:nombre, :duracion, :precio, :descripcion, :id_negocio)");
+    $consulta->bindParam(':nombre', $nombre);
     $consulta->bindParam(':duracion', $duracion);
     $consulta->bindParam(':precio', $precio);
     $consulta->bindParam(':descripcion', $descripcion);
+    $consulta->bindParam(':id_negocio', $id_negocio);
 
     return $consulta->execute();
-
 }
 
 

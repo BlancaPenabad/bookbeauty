@@ -130,7 +130,7 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
           <ul class="navbar-nav justify-content-center flex-grow-1 pe-3">
            
             <li class="nav-item">
-              <a class="nav-link mx-lg-2" href="#miNegocio">EL NEGOCIO</a>
+              <a class="nav-link mx-lg-2" href="#miNegocio">NUESTRO NEGOCIO</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-lg-2" href="#servicios">SERVICIOS</a>
@@ -324,9 +324,9 @@ $horas_ocupadas_json = json_encode($horas_ocupadas);
     </div>
     <div class="footerNav">
       <ul>
-        <li><a href="#miNegocio">Quienes somos</a></li>
+        <li><a href="#miNegocio">Nuestro negocio</a></li>
         <li><a href="#servicios">Servicios</a></li>
-        <li><a href="#reservas">Reserva</a></li>
+        <li><a href="#reservas">Reserva tu cita</a></li>
       </ul>
     </div>
   </div>

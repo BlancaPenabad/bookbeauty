@@ -37,6 +37,8 @@ if($negocio === null){
   $nombre_negocio = $negocio['nombre'];
   $telefono_negocio = $negocio['telefono'];
   $direccion_negocio = $negocio['direccion'];
+  $descripcion_negocio = $negocio['descripcion'];
+  $email_negocio = $negocio['email'];
 }
 
 $citas = get_citas_negocio($conexion, $id_negocio);
@@ -149,14 +151,15 @@ if (isset($_POST['delete_cita_id'])) {
       </div>
     </section>
     <section class="dos"  id="miNegocio">
-        <h2>Negocio: <?= htmlspecialchars($nombre_negocio); ?></h2>
+        <h2><?= htmlspecialchars($nombre_negocio); ?></h2>
         <div class="accordion">
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Teléfono</h3>
+              <h3>Teléfono y email</h3>
             </div>
             <div class="accordion-content">
               <p><?= htmlspecialchars($telefono_negocio); ?></p>
+              <p><?= htmlspecialchars($email_negocio); ?></p>
             </div>
           </div>
           <div class="accordion-item">
@@ -169,10 +172,10 @@ if (isset($_POST['delete_cita_id'])) {
           </div>
           <div class="accordion-item">
             <div class="accordion-header">
-              <h3>Texto</h3>
+              <h3>Descripción</h3>
             </div>
             <div class="accordion-content">
-              <p>Texto</p>
+              <p><?= htmlspecialchars($descripcion_negocio); ?></p>
             </div>
           </div>
         </div>
@@ -200,7 +203,6 @@ if (isset($_POST['delete_cita_id'])) {
       <div class="container d-flex align-items-center justify-content-center fs-1 text-white flex-column"> 
         <h2 id="h2Reserva">Gestiona tus <b>SERVICIOS</b></h2>
         <div id="reserva" class="reserva-container">
-        <h2>Servicios del Negocio</h2>
         <div class="container">
         <?php if ($servicios && count($servicios) > 0): ?>
           <div class="table-responsive">
@@ -265,6 +267,9 @@ if (isset($_POST['delete_cita_id'])) {
                       <?php endforeach; ?>
                   </tbody>
               </table>
+              <div class="text-center mt-4">
+                  <a href="addServicio.php" class="btn btn-primary">Añadir nuevo servicio</a>
+              </div>
             </div>
         <?php else: ?>
             <p>No hay servicios disponibles.</p>
@@ -394,6 +399,12 @@ if (isset($_POST['delete_cita_id'])) {
   </a>
 </main>
 <!--End Main -->
+<!--Footer -->
+<footer>
+  <div class="footerBottom">
+      <p><small>Copyright &copy;2025; Diseñado por <span class="designer">Blanca Penabad Villar</span></small></p>
+    </div>
+</footer>
 <script>
     document.querySelectorAll('.accordion-header').forEach(header => {
       header.addEventListener('click', () => {
